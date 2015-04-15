@@ -22,13 +22,14 @@
         android:ems="10"
         android:id="@+id/TempUpper"
         android:editable="false"
-        android:enabled="false"
+        android:enabled="true"
         android:textAlignment="center"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/Temperatures"
         android:layout_toEndOf="@+id/Temperatures"
         android:hint="U"
-        android:gravity="center" />
+        android:gravity="center"
+        android:maxLength="5" />
 
     <EditText
         android:layout_width="60dp"
@@ -37,7 +38,7 @@
         android:ems="10"
         android:id="@+id/TempMiddle"
         android:editable="false"
-        android:enabled="false"
+        android:enabled="true"
         android:textAlignment="center"
         android:hint="M"
         android:gravity="center"
@@ -52,7 +53,7 @@
         android:ems="10"
         android:id="@+id/TempLower"
         android:editable="false"
-        android:enabled="false"
+        android:enabled="true"
         android:textAlignment="center"
         android:hint="L"
         android:gravity="center"
@@ -82,6 +83,7 @@
         android:layout_toRightOf="@+id/AverageTemperature"
         android:layout_toEndOf="@+id/AverageTemperature"
         android:layout_below="@+id/TempMiddle"
-        android:gravity="center" />
+        android:gravity="center"
+        android:editable="false" />
 
 </RelativeLayout>

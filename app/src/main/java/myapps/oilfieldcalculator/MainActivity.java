@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,13 +18,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         EditText upperTemp = (EditText) findViewById(R.id.TempUpper);
-        upperTemp.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        upperTemp.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                Toast.makeText(getApplicationContext(), "OnEditorActionFired", Toast.LENGTH_SHORT).show();
-                return false;
+            public void onFocusChange(View v, boolean hasFocus) {
+                Toast.makeText(getApplicationContext(), "Fire!", Toast.LENGTH_SHORT).show();
+
             }
         });
+
 
     }
 
