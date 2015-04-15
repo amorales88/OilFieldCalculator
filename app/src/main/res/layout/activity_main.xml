@@ -5,30 +5,83 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Hello Hello"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Temperatures:"
+        android:id="@+id/Temperatures"
+        android:layout_alignBottom="@+id/TempUpper"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="73dp" />
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/TempUpper"
+        android:editable="false"
+        android:enabled="false"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/Temperatures"
+        android:layout_toEndOf="@+id/Temperatures"
+        android:hint="U"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/TempMiddle"
+        android:editable="false"
+        android:enabled="false"
+        android:textAlignment="center"
+        android:hint="M"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/TempUpper"
+        android:layout_toRightOf="@+id/TempUpper"
+        android:layout_toEndOf="@+id/TempUpper" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/TempLower"
+        android:editable="false"
+        android:enabled="false"
+        android:textAlignment="center"
+        android:hint="L"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/TempMiddle"
+        android:layout_toRightOf="@+id/TempMiddle"
+        android:layout_toEndOf="@+id/TempMiddle" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Alex Hello"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
+        android:text="Average Temperature:"
+        android:id="@+id/AverageTemperature"
+        android:layout_below="@+id/Temperatures"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/AvgTempNum"
+        android:layout_alignBottom="@+id/AverageTemperature"
+        android:layout_alignRight="@+id/TempLower"
+        android:layout_alignEnd="@+id/TempLower"
+        android:layout_toRightOf="@+id/AverageTemperature"
+        android:layout_toEndOf="@+id/AverageTemperature"
+        android:layout_below="@+id/TempMiddle"
+        android:gravity="center" />
 
 </RelativeLayout>
