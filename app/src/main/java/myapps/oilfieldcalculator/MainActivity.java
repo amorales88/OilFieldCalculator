@@ -1,5 +1,6 @@
 package myapps.oilfieldcalculator;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -75,6 +76,11 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if (id == R.id.action_converter) {
+            Intent converterIntent = new Intent(this, Converter.class);
+            startActivity(converterIntent);
         }
 
         return super.onOptionsItemSelected(item);

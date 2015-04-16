@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Converter"
+            android:label="@string/title_activity_converter" >
+        </activity>
     </application>
 
 </manifest>
