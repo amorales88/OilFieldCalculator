@@ -44,7 +44,8 @@
         android:gravity="center"
         android:layout_alignBottom="@+id/TempUpper"
         android:layout_toRightOf="@+id/TempUpper"
-        android:layout_toEndOf="@+id/TempUpper" />
+        android:layout_toEndOf="@+id/TempUpper"
+        android:maxLength="5" />
 
     <EditText
         android:layout_width="60dp"
@@ -59,7 +60,8 @@
         android:gravity="center"
         android:layout_alignBottom="@+id/TempMiddle"
         android:layout_toRightOf="@+id/TempMiddle"
-        android:layout_toEndOf="@+id/TempMiddle" />
+        android:layout_toEndOf="@+id/TempMiddle"
+        android:maxLength="5" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -83,7 +85,9 @@
         android:layout_toRightOf="@+id/AverageTemperature"
         android:layout_toEndOf="@+id/AverageTemperature"
         android:layout_below="@+id/TempMiddle"
-        android:gravity="center"
-        android:editable="false" />
+        android:gravity="bottom|center"
+        android:editable="false"
+        android:text="0"
+        android:maxLength="7" />
 
 </RelativeLayout>
