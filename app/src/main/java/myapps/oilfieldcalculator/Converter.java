@@ -27,6 +27,10 @@ public class Converter extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
 
+        Spinner magSpinner = (Spinner) findViewById(R.id.magnitudeSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.magnitude_array, android.R.layout.simple_spinner_dropdown_item);
+        magSpinner.setAdapter(adapter);
+        // TODO: Change Spinners values depending on choice (volume/distance)
         setValuesToSpinners(R.id.spinner);
         setValuesToSpinners(R.id.spinner2);
 
@@ -93,7 +97,7 @@ public class Converter extends Activity {
 
     private void setValuesToSpinners(int spinnerId) {
         Spinner spinner = (Spinner) findViewById(spinnerId);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.uom_array, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.distance_array, android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
 

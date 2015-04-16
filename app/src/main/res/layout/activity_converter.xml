@@ -10,19 +10,19 @@
         android:layout_width="150dp"
         android:layout_height="30dp"
         android:id="@+id/spinner"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_alignBottom="@+id/editText" />
+        android:layout_alignTop="@+id/editText"
+        android:layout_toEndOf="@+id/editText"
+        android:layout_toRightOf="@+id/editText" />
 
     <Spinner
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner2"
         android:spinnerMode="dropdown"
+        android:layout_marginTop="42dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="45dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,8 +30,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="TO"
         android:id="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp" />
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,10 +41,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="0"
         android:id="@+id/textView2"
-        android:layout_marginTop="66dp"
+        android:textSize="30dp"
         android:layout_below="@+id/spinner2"
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -50,9 +51,18 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editText"
-        android:layout_alignParentTop="true"
+        android:text="0"
+        android:layout_below="@+id/magnitudeSpinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/magnitudeSpinner"
+        android:layout_toLeftOf="@+id/spinner"
         android:layout_toStartOf="@+id/spinner"
-        android:text="0" />
+        android:spinnerMode="dialog" />
 
 
 </RelativeLayout>
