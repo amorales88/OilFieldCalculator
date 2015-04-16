@@ -86,12 +86,11 @@ public class MainActivity extends ActionBarActivity {
         double result = 0.0;
         //Check to see if field is blank, if so it will cause an error
 
-        result = result + (upperTemp.getText().toString().matches("")? 0 : Double.valueOf(upperTemp.getText().toString()));
+        result = result + ((upperTemp.getText().toString().equals("") || upperTemp.getText().toString().equals(".")) ? 0 : Double.valueOf(upperTemp.getText().toString()));
 
-        result = result + (middleTemp.getText().toString().matches("")? 0 : Double.valueOf(middleTemp.getText().toString()));
+        result = result + ((middleTemp.getText().toString().equals("") || middleTemp.getText().toString().equals("."))? 0 : Double.valueOf(middleTemp.getText().toString()));
 
-        result = result + (lowerTemp.getText().toString().matches("")? 0 : Double.valueOf(lowerTemp.getText().toString()));
-        Log.i("MuriloCalc","4");
+        result = result + ((lowerTemp.getText().toString().equals("") || lowerTemp.getText().toString().equals("."))? 0 : Double.valueOf(lowerTemp.getText().toString()));
         return (result/3);
 
     }
