@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,17 +16,24 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
-    EditText upperTemp = (EditText) findViewById(R.id.TempUpper);
-    EditText middleTemp = (EditText) findViewById(R.id.TempMiddle);
-    EditText lowerTemp = (EditText) findViewById(R.id.TempLower);
-    TextView AvgTempNum = (TextView) findViewById(R.id.AvgTempNum);
+    EditText upperTemp;
+    EditText middleTemp;
+    EditText lowerTemp;
+    TextView AvgTempNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        upperTemp.addTextChangedListener(new TextWatcher() {
+
+        upperTemp = (EditText) findViewById(R.id.TempUpper);
+        middleTemp = (EditText) findViewById(R.id.TempMiddle);
+        lowerTemp = (EditText) findViewById(R.id.TempLower);
+        AvgTempNum = (TextView) findViewById(R.id.AvgTempNum);
+
+        TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -33,16 +41,19 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                AvgTempNum.setText(Double.toString(calculateAverageTemp()));
-
+                AvgTempNum.setText(String.valueOf(calculateAverageTemp()));
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        };
 
+        Log.i("Murilo1", "OilField");
+        upperTemp.addTextChangedListener(textWatcher);
+        middleTemp.addTextChangedListener(textWatcher);
+        lowerTemp.addTextChangedListener(textWatcher);
 
     }
 
@@ -71,11 +82,17 @@ public class MainActivity extends ActionBarActivity {
 
 
     public double calculateAverageTemp(){
+
         double result = 0.0;
         //Check to see if field is blank, if so it will cause an error
-        result =+ (upperTemp.getText().toString().matches("")? 0 : Double.valueOf(upperTemp.getText().toString()));
-        result =+ (middleTemp.getText().toString().matches("")? 0 : Double.valueOf(middleTemp.getText().toString()));
-        result =+ (lowerTemp.getText().toString().matches("")? 0 : Double.valueOf(lowerTemp.getText().toString()));
+
+        result = result + (upperTemp.getText().toString().matches("")? 0 : Double.valueOf(upperTemp.getText().toString()));
+
+        result = result + (middleTemp.getText().toString().matches("")? 0 : Double.valueOf(middleTemp.getText().toString()));
+
+        result = result + (lowerTemp.getText().toString().matches("")? 0 : Double.valueOf(lowerTemp.getText().toString()));
+        Log.i("MuriloCalc","4");
         return (result/3);
+
     }
 }
