@@ -177,4 +177,56 @@
         android:layout_alignEnd="@+id/FreeWaterVolume"
         android:layout_below="@+id/FreeWaterVolume" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="CTSH Factor:"
+        android:id="@+id/ctshFactorText"
+        android:layout_below="@+id/AmbientTemperatureText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/ctshFactor"
+        android:gravity="center|bottom"
+        android:editable="false"
+        android:text="0.0"
+        android:maxLength="12"
+        android:layout_alignBottom="@+id/ctshFactorText"
+        android:layout_toRightOf="@+id/TemperaturesText"
+        android:layout_alignRight="@+id/AmbientTemperature"
+        android:layout_alignEnd="@+id/AmbientTemperature"
+        android:layout_below="@+id/AmbientTemperatureText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Actual Temp:"
+        android:id="@+id/ActualTempText"
+        android:layout_below="@+id/ctshFactorText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/ActualTemp"
+        android:gravity="center|bottom"
+        android:editable="false"
+        android:text="0.0"
+        android:maxLength="12"
+        android:layout_alignBottom="@+id/ActualTempText"
+        android:layout_toRightOf="@+id/ctshFactorText"
+        android:layout_alignRight="@+id/ctshFactor"
+        android:layout_alignEnd="@+id/ctshFactor"
+        android:layout_below="@+id/ctshFactor" />
+
 </RelativeLayout>

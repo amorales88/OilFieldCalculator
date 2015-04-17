@@ -21,6 +21,11 @@ public class MainActivity extends ActionBarActivity {
     EditText middleTemp;
     EditText lowerTemp;
     TextView AvgTempNum;
+    EditText TotalObservedVolume;
+    EditText FreeWaterVolume;
+    EditText AmbientTemp;
+    TextView ctshFactor;
+    TextView ActualTemp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,11 @@ public class MainActivity extends ActionBarActivity {
         middleTemp = (EditText) findViewById(R.id.TempMiddle);
         lowerTemp = (EditText) findViewById(R.id.TempLower);
         AvgTempNum = (TextView) findViewById(R.id.AvgTempNum);
+        TotalObservedVolume = (EditText) findViewById(R.id.TotalObservedVolume);
+        FreeWaterVolume = (EditText) findViewById(R.id.FreeWaterVolume);
+        AmbientTemp = (EditText) findViewById(R.id.AmbientTemperature);
+        ctshFactor = (TextView) findViewById(R.id.ctshFactor);
+        ActualTemp = (TextView) findViewById(R.id.ActualTemp);
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -55,6 +65,25 @@ public class MainActivity extends ActionBarActivity {
         upperTemp.addTextChangedListener(textWatcher);
         middleTemp.addTextChangedListener(textWatcher);
         lowerTemp.addTextChangedListener(textWatcher);
+
+        TextWatcher ambientTempWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ctshFactor.setText(String.valueOf(calculateCTSHFactor()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+        AmbientTemp.addTextChangedListener(ambientTempWatcher);
 
     }
 
@@ -99,7 +128,28 @@ public class MainActivity extends ActionBarActivity {
         result = result + ((middleTemp.getText().toString().equals("") || middleTemp.getText().toString().equals("."))? 0 : Double.valueOf(middleTemp.getText().toString()));
 
         result = result + ((lowerTemp.getText().toString().equals("") || lowerTemp.getText().toString().equals("."))? 0 : Double.valueOf(lowerTemp.getText().toString()));
+
+        //Round to the 1st decimal
         return ((double)Math.round((result/3) * 10) / 10);
 
     }
+
+    public double calculateCTSHFactor(){
+        //Verify AmbientTemp isnt a '.' or blank
+        double AmbientTempNum = ((AmbientTemp.getText().toString().equals("") || AmbientTemp.getText().toString().equals("."))? 0 : Double.valueOf(AmbientTemp.getText().toString()));
+
+        // (Average Temp x 7 + AmbientTemp) / 8 = Actual Temp
+        double result = (Double.valueOf(AvgTempNum.getText().toString()) * 7 + AmbientTempNum) / 8;
+
+        //Set Actual Temp to 1st decimal and use that value for next calculation
+        result = ((double)Math.round(result * 10) / 10);
+        ActualTemp.setText(String.valueOf(result));
+
+        // ((Actual Temp - 60) x .0000124) + 1
+        result = ((result - 60) * .0000124) + 1;
+
+        //Round to the 5th decimal
+        return ((double)Math.round(result * 100000) / 100000);
+    }
+
 }
