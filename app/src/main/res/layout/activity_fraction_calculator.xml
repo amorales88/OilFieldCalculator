@@ -77,7 +77,8 @@
         android:gravity="center"
         android:maxLength="2"
         android:padding="5dp"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:enabled="true" />
 
     <EditText
         android:layout_width="25dp"
@@ -91,7 +92,8 @@
         android:padding="5dp"
         android:textSize="10dp"
         android:gravity="center"
-        android:maxLength="2" />
+        android:maxLength="2"
+        android:enabled="true" />
 
     <EditText
         android:layout_width="40dp"
@@ -127,7 +129,7 @@
         android:enabled="true"
         android:padding="5dp"
         android:maxLength="3"
-        android:layout_alignTop="@+id/feetNum2"
+        android:layout_alignBottom="@+id/textView3"
         android:layout_toLeftOf="@+id/denomNum2"
         android:layout_toStartOf="@+id/denomNum2" />
 
@@ -143,7 +145,8 @@
         android:textSize="10dp"
         android:layout_alignBottom="@+id/inchNum2"
         android:layout_toLeftOf="@+id/textView4"
-        android:layout_toStartOf="@+id/textView4" />
+        android:layout_toStartOf="@+id/textView4"
+        android:enabled="true" />
 
     <View
         android:layout_width="25dp"
@@ -172,7 +175,8 @@
         android:layout_alignRight="@+id/Divider2"
         android:layout_alignEnd="@+id/Divider2"
         android:layout_alignLeft="@+id/denomNum2"
-        android:layout_alignStart="@+id/denomNum2" />
+        android:layout_alignStart="@+id/denomNum2"
+        android:enabled="true" />
 
     <TextView
         android:layout_width="wrap_content"
