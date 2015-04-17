@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 
 public class FractionCalculator extends ActionBarActivity {
@@ -12,6 +14,9 @@ public class FractionCalculator extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fraction_calculator);
+        Spinner operatorSpinner = (Spinner) findViewById(R.id.opSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.operator_array, android.R.layout.simple_spinner_dropdown_item);
+        operatorSpinner.setAdapter(adapter);
     }
 
 

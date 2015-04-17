@@ -16,10 +16,18 @@
         <item>km</item>
     </string-array>
     <string-array name="volume_array">
-        <item>m</item>
-        <item>ft</item>
-        <item>mi</item>
-        <item>km</item>
+        <item>oz</item>
+        <item>fl.oz</item>
+        <item>gl</item>
+        <item>ml</item>
+        <item>l</item>
     </string-array>
+    <string-array name="operator_array">
+        <item>+</item>
+        <item>-</item>
+        <item>X</item>
+        <item>÷</item>
+    </string-array>
+
     <string name="title_activity_fraction_calculator">FractionCalculator</string>
 </resources>

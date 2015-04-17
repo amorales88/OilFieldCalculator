@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="myapps.oilfieldcalculator.FractionCalculator">
+    tools:context="myapps.oilfieldcalculator.FractionCalculator"
+    android:textAlignment="viewEnd">
 
     <EditText
         android:layout_width="40dp"
@@ -81,7 +82,7 @@
         android:layout_toRightOf="@+id/inchNum1" />
 
     <EditText
-        android:layout_width="25dp"
+        android:layout_width="40dp"
         android:layout_height="40dp"
         android:inputType="number"
         android:ems="10"
@@ -107,10 +108,9 @@
         android:enabled="true"
         android:padding="5dp"
         android:maxLength="3"
-        android:layout_alignBottom="@+id/denomNum1"
-        android:layout_toLeftOf="@+id/textView3"
-        android:layout_toStartOf="@+id/textView3"
-        android:layout_alignTop="@+id/feetNum1" />
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/ftText"
+        android:layout_toStartOf="@+id/ftText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -118,9 +118,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="ft."
         android:id="@+id/textView3"
-        android:layout_alignTop="@+id/inText"
-        android:layout_toLeftOf="@+id/inchNum2"
-        android:layout_toStartOf="@+id/inchNum2" />
+        android:layout_alignBottom="@+id/feetNum2"
+        android:layout_alignLeft="@+id/ftText"
+        android:layout_alignStart="@+id/ftText" />
 
     <EditText
         android:layout_width="40dp"
@@ -133,8 +133,8 @@
         android:padding="5dp"
         android:maxLength="3"
         android:layout_alignBottom="@+id/textView3"
-        android:layout_alignTop="@+id/feetNum2"
-        android:layout_toStartOf="@+id/denomNum2" />
+        android:layout_toLeftOf="@+id/denomNum1"
+        android:layout_toStartOf="@+id/denomNum1" />
 
     <EditText
         android:layout_width="40dp"
@@ -146,26 +146,25 @@
         android:maxLength="2"
         android:padding="0dp"
         android:textSize="15dp"
-        android:layout_alignBottom="@+id/denomNum1"
-        android:layout_toLeftOf="@+id/textView4"
-        android:layout_toStartOf="@+id/textView4"
         android:enabled="true"
-        android:layout_alignTop="@+id/denomNum1" />
+        android:layout_alignBottom="@+id/inchNum2"
+        android:layout_alignLeft="@+id/denomNum1"
+        android:layout_alignStart="@+id/denomNum1" />
 
     <View
         android:layout_width="25dp"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
         android:id="@+id/Divider2"
-        android:layout_alignEnd="@+id/denomNum2"
-        android:layout_toEndOf="@+id/inchNum2"
-        android:layout_alignStart="@+id/denomNum2"
-        android:layout_alignTop="@+id/Divider"
-        android:layout_below="@+id/Divider" />
+        android:layout_toLeftOf="@+id/denomNum2"
+        android:layout_toStartOf="@+id/opSpinner"
+        android:layout_alignLeft="@+id/Divider"
+        android:layout_alignRight="@+id/denomNum2"
+        android:layout_alignTop="@+id/feetNum2" />
 
     <EditText
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/numertaorNum2"
@@ -173,13 +172,11 @@
         android:textSize="15dp"
         android:gravity="center"
         android:maxLength="2"
-        android:layout_alignBottom="@+id/numeratorNum1"
-        android:layout_alignTop="@+id/numeratorNum1"
+        android:enabled="true"
         android:layout_alignRight="@+id/denomNum2"
         android:layout_alignEnd="@+id/Divider2"
         android:layout_alignLeft="@+id/denomNum2"
-        android:layout_alignStart="@+id/denomNum2"
-        android:enabled="true" />
+        android:layout_above="@+id/Divider2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -187,8 +184,20 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="in."
         android:id="@+id/textView4"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignBottom="@+id/denomNum2"
+        android:layout_alignLeft="@+id/inText"
+        android:layout_alignStart="@+id/inText" />
+
+    <Spinner
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/opSpinner"
+        android:spinnerMode="dropdown"
+        android:layout_above="@+id/numertaorNum2"
+        android:layout_toRightOf="@+id/feetNum1"
+        android:layout_toStartOf="@+id/denomNum1"
+        android:layout_alignRight="@+id/Divider"
+        android:layout_alignEnd="@+id/Divider"
+        style="@style/spinner_style" />
 
 </RelativeLayout>
