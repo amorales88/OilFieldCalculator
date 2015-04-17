@@ -20,6 +20,10 @@
             android:name=".Converter"
             android:label="@string/title_activity_converter" >
         </activity>
+        <activity
+            android:name=".FractionCalculator"
+            android:label="@string/title_activity_fraction_calculator" >
+        </activity>
     </application>
 
 </manifest>
