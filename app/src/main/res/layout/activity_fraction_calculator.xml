@@ -8,7 +8,7 @@
 
     <EditText
         android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/feetNum1"
@@ -33,7 +33,7 @@
 
     <EditText
         android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/inchNum1"
@@ -52,7 +52,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="in."
         android:id="@+id/inText"
-        android:layout_alignTop="@+id/ftText"
+        android:layout_alignBottom="@+id/denomNum1"
         android:layout_toRightOf="@+id/denomNum1"
         android:layout_toEndOf="@+id/denomNum1" />
 
@@ -63,41 +63,43 @@
         android:id="@+id/Divider"
         android:layout_above="@+id/denomNum1"
         android:layout_toRightOf="@+id/inchNum1"
-        android:layout_toEndOf="@+id/inchNum1" />
-
-    <EditText
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/denomNum1"
-        android:layout_alignBottom="@+id/inchNum1"
-        android:layout_alignRight="@+id/Divider"
-        android:layout_alignEnd="@+id/Divider"
-        android:gravity="center"
-        android:maxLength="2"
-        android:padding="5dp"
-        android:textSize="10dp"
-        android:enabled="true" />
-
-    <EditText
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/numeratorNum1"
-        android:layout_above="@+id/Divider"
-        android:layout_alignRight="@+id/Divider"
-        android:layout_alignEnd="@+id/Divider"
-        android:padding="5dp"
-        android:textSize="10dp"
-        android:gravity="center"
-        android:maxLength="2"
-        android:enabled="true" />
+        android:layout_toEndOf="@+id/inchNum1"
+        android:layout_alignRight="@+id/denomNum1" />
 
     <EditText
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/denomNum1"
+        android:gravity="center"
+        android:maxLength="2"
+        android:padding="0dp"
+        android:textSize="15dp"
+        android:enabled="true"
+        android:layout_alignBottom="@+id/inchNum1"
+        android:layout_toRightOf="@+id/inchNum1" />
+
+    <EditText
+        android:layout_width="25dp"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/numeratorNum1"
+        android:padding="0dp"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:maxLength="2"
+        android:enabled="true"
+        android:layout_above="@+id/Divider"
+        android:layout_alignLeft="@+id/denomNum1"
+        android:layout_alignStart="@+id/Divider"
+        android:layout_alignRight="@+id/denomNum1"
+        android:layout_alignEnd="@+id/denomNum1" />
+
+    <EditText
+        android:layout_width="40dp"
+        android:layout_height="50dp"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/feetNum2"
@@ -107,7 +109,8 @@
         android:maxLength="3"
         android:layout_alignBottom="@+id/denomNum1"
         android:layout_toLeftOf="@+id/textView3"
-        android:layout_toStartOf="@+id/textView3" />
+        android:layout_toStartOf="@+id/textView3"
+        android:layout_alignTop="@+id/feetNum1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -121,7 +124,7 @@
 
     <EditText
         android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/inchNum2"
@@ -130,35 +133,35 @@
         android:padding="5dp"
         android:maxLength="3"
         android:layout_alignBottom="@+id/textView3"
-        android:layout_toLeftOf="@+id/denomNum2"
+        android:layout_alignTop="@+id/feetNum2"
         android:layout_toStartOf="@+id/denomNum2" />
 
     <EditText
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/denomNum2"
         android:gravity="center"
         android:maxLength="2"
-        android:padding="5dp"
-        android:textSize="10dp"
-        android:layout_alignBottom="@+id/inchNum2"
+        android:padding="0dp"
+        android:textSize="15dp"
+        android:layout_alignBottom="@+id/denomNum1"
         android:layout_toLeftOf="@+id/textView4"
         android:layout_toStartOf="@+id/textView4"
-        android:enabled="true" />
+        android:enabled="true"
+        android:layout_alignTop="@+id/denomNum1" />
 
     <View
         android:layout_width="25dp"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
         android:id="@+id/Divider2"
-        android:layout_alignRight="@+id/denomNum2"
         android:layout_alignEnd="@+id/denomNum2"
         android:layout_toEndOf="@+id/inchNum2"
-        android:layout_alignBottom="@+id/Divider"
-        android:layout_alignLeft="@+id/denomNum2"
-        android:layout_alignStart="@+id/denomNum2" />
+        android:layout_alignStart="@+id/denomNum2"
+        android:layout_alignTop="@+id/Divider"
+        android:layout_below="@+id/Divider" />
 
     <EditText
         android:layout_width="25dp"
@@ -166,13 +169,13 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/numertaorNum2"
-        android:padding="5dp"
-        android:textSize="10dp"
+        android:padding="0dp"
+        android:textSize="15dp"
         android:gravity="center"
         android:maxLength="2"
         android:layout_alignBottom="@+id/numeratorNum1"
         android:layout_alignTop="@+id/numeratorNum1"
-        android:layout_alignRight="@+id/Divider2"
+        android:layout_alignRight="@+id/denomNum2"
         android:layout_alignEnd="@+id/Divider2"
         android:layout_alignLeft="@+id/denomNum2"
         android:layout_alignStart="@+id/denomNum2"
