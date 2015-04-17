@@ -29,7 +29,8 @@
         android:layout_toEndOf="@+id/TemperaturesText"
         android:hint="U"
         android:gravity="center"
-        android:maxLength="5" />
+        android:maxLength="5"
+        android:nextFocusRight="@+id/TempMiddle"/>
 
     <EditText
         android:layout_width="60dp"
@@ -45,7 +46,8 @@
         android:layout_alignBottom="@+id/TempUpper"
         android:layout_toRightOf="@+id/TempUpper"
         android:layout_toEndOf="@+id/TempUpper"
-        android:maxLength="5" />
+        android:maxLength="5"
+        android:nextFocusRight="@+id/TempLower"/>
 
     <EditText
         android:layout_width="60dp"
@@ -61,7 +63,8 @@
         android:layout_alignBottom="@+id/TempMiddle"
         android:layout_toRightOf="@+id/TempMiddle"
         android:layout_toEndOf="@+id/TempMiddle"
-        android:maxLength="5" />
+        android:maxLength="5"
+        android:nextFocusForward="@+id/AvgTempNum"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,7 +91,8 @@
         android:gravity="center|bottom"
         android:editable="false"
         android:text="0.0"
-        android:maxLength="7" />
+        android:maxLength="7"
+        android:nextFocusForward="@+id/TotalObservedVolumer"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -117,7 +121,8 @@
         android:gravity="center|bottom"
         android:textAlignment="center"
         android:paddingBottom="5dp"
-        android:maxLength="13" />
+        android:maxLength="13"
+        android:nextFocusForward="@+id/FreeWaterVolume"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -146,7 +151,8 @@
         android:layout_toRightOf="@+id/FreeWaterVolumeText"
         android:layout_alignRight="@+id/TotalObservedVolume"
         android:layout_alignEnd="@+id/TotalObservedVolume"
-        android:layout_below="@+id/TotalObservedVolume" />
+        android:layout_below="@+id/TotalObservedVolume"
+        android:nextFocusForward="@+id/AmbientTemperature"/>
 
     <TextView
         android:layout_width="wrap_content"
