@@ -97,7 +97,7 @@ public class MainActivity extends ActionBarActivity {
         result = result + ((middleTemp.getText().toString().equals("") || middleTemp.getText().toString().equals("."))? 0 : Double.valueOf(middleTemp.getText().toString()));
 
         result = result + ((lowerTemp.getText().toString().equals("") || lowerTemp.getText().toString().equals("."))? 0 : Double.valueOf(lowerTemp.getText().toString()));
-        return (result/3);
+        return ((double)Math.round((result/3) * 10) / 10);
 
     }
 }
