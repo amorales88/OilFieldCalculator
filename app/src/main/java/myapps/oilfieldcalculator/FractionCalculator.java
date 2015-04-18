@@ -4,11 +4,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 public class FractionCalculator extends ActionBarActivity {
+
+    EditText feetNum1,feetNum2;
+    EditText inchNum1,inchNum2;
+    EditText numeratorNum1,numeratorNum2;
+    EditText denomNum1,denomNum2;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +27,15 @@ public class FractionCalculator extends ActionBarActivity {
         Spinner operatorSpinner = (Spinner) findViewById(R.id.opSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.operator_array, android.R.layout.simple_spinner_dropdown_item);
         operatorSpinner.setAdapter(adapter);
+
+        feetNum1 = (EditText) findViewById(R.id.feetNum1);
+        feetNum2 = (EditText) findViewById(R.id.feetNum2);
+        inchNum1 = (EditText) findViewById(R.id.inchNum1);
+        inchNum2 = (EditText) findViewById(R.id.inchNum2);
+        numeratorNum1 = (EditText) findViewById(R.id.numeratorNum1);
+        numeratorNum2 = (EditText) findViewById(R.id.numeratorNum2);
+        denomNum1 = (EditText) findViewById(R.id.denomNum1);
+        denomNum2 = (EditText) findViewById(R.id.denomNum2);
     }
 
 
@@ -40,5 +59,10 @@ public class FractionCalculator extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //This method is called by the button internally
+    public void calculateResult(View v){
+        Toast.makeText(getApplicationContext(),"Button Clicked",Toast.LENGTH_SHORT).show();
     }
 }

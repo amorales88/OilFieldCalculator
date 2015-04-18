@@ -4,6 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_converter">Converter</string>
+    <string name="fraction_converter">Fraction Converter</string>
     <string name="title_activity_converter">Converter</string>
     <string-array name="magnitude_array">
         <item>Distance</item>
@@ -27,6 +28,12 @@
         <item>-</item>
         <item>X</item>
         <item>÷</item>
+    </string-array>
+
+    <string-array name="Critical_Zone">
+        <item>Yes</item>
+        <item>No</item>
+        <item>Below Roof</item>
     </string-array>
 
     <string name="title_activity_fraction_calculator">FractionCalculator</string>

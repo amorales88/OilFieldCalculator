@@ -167,7 +167,7 @@
         android:layout_height="40dp"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/numertaorNum2"
+        android:id="@+id/numeratorNum2"
         android:padding="0dp"
         android:textSize="15dp"
         android:gravity="center"
@@ -193,11 +193,35 @@
         android:layout_height="wrap_content"
         android:id="@+id/opSpinner"
         android:spinnerMode="dropdown"
-        android:layout_above="@+id/numertaorNum2"
+        android:layout_above="@+id/numeratorNum2"
         android:layout_toRightOf="@+id/feetNum1"
         android:layout_toStartOf="@+id/denomNum1"
         android:layout_alignRight="@+id/Divider"
         android:layout_alignEnd="@+id/Divider"
         style="@style/spinner_style" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate"
+        android:id="@+id/CalculateButton"
+        android:layout_below="@+id/denomNum2"
+        android:layout_marginTop="23dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="21dp"
+        android:textStyle="normal"
+        android:onClick="calculateResult" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/result"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/CalculateButton"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

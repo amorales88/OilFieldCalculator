@@ -10,7 +10,9 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
     EditText AmbientTemp;
     TextView ctshFactor;
     TextView ActualTemp;
+    Spinner operatorSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,6 @@ public class MainActivity extends ActionBarActivity {
             }
         };
 
-        Log.i("Murilo1", "OilField");
         upperTemp.addTextChangedListener(textWatcher);
         middleTemp.addTextChangedListener(textWatcher);
         lowerTemp.addTextChangedListener(textWatcher);
@@ -85,6 +87,10 @@ public class MainActivity extends ActionBarActivity {
 
         AmbientTemp.addTextChangedListener(ambientTempWatcher);
 
+        operatorSpinner = (Spinner) findViewById(R.id.GaugeInCriticalZoneSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Critical_Zone, android.R.layout.simple_spinner_dropdown_item);
+        operatorSpinner.setAdapter(adapter);
+
     }
 
 
@@ -104,14 +110,17 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent fracCalcIntent = new Intent(this, FractionCalculator.class);
-            startActivity(fracCalcIntent);
             return true;
         }
 
         if (id == R.id.action_converter) {
             Intent converterIntent = new Intent(this, Converter.class);
             startActivity(converterIntent);
+        }
+
+        if(id == R.id.fraction_converter){
+            Intent fracCalcIntent = new Intent(this, FractionCalculator.class);
+            startActivity(fracCalcIntent);
         }
 
         return super.onOptionsItemSelected(item);
