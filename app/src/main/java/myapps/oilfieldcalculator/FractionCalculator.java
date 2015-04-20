@@ -69,14 +69,14 @@ public class FractionCalculator extends ActionBarActivity {
         //int[] fraction = reduceFraction(Integer.valueOf(numeratorNum1.getText().toString()), Integer.valueOf(denomNum1.getText().toString()));
         //result.setText(fraction[0] + "/" + fraction[1] + "/" + fraction[2]);
         //If the value is blank or '.', assign 0
-        int numerator1 = (numeratorNum1.getText().toString().equals("") || numeratorNum1.getText().toString().equals(".")) ? 0 : Integer.valueOf(numeratorNum1.getText().toString());
-        int numerator2 = (numeratorNum2.getText().toString().equals("") || numeratorNum2.getText().toString().equals(".")) ? 0 : Integer.valueOf(numeratorNum2.getText().toString());
-        int denom1 = (denomNum1.getText().toString().equals("") || denomNum1.getText().toString().equals(".")) ? 0 : Integer.valueOf(denomNum1.getText().toString());
-        int denom2 = (denomNum2.getText().toString().equals("") || denomNum2.getText().toString().equals(".")) ? 0 : Integer.valueOf(denomNum2.getText().toString());
-        int feetNumber1 = (feetNum1.getText().toString().equals("") || feetNum1.getText().toString().equals(".")) ? 0 : Integer.valueOf(feetNum1.getText().toString());
-        int feetNumber2 = (feetNum2.getText().toString().equals("") || feetNum2.getText().toString().equals(".")) ? 0 : Integer.valueOf(feetNum2.getText().toString());
-        int inchNumber1 = (inchNum1.getText().toString().equals("") || inchNum1.getText().toString().equals(".")) ? 0 : Integer.valueOf(inchNum1.getText().toString());
-        int inchNumber2 = (inchNum2.getText().toString().equals("") || inchNum2.getText().toString().equals(".")) ? 0 : Integer.valueOf(inchNum2.getText().toString());
+        int numerator1 = fixInputAndConvert(numeratorNum1.getText().toString());
+        int numerator2 = fixInputAndConvert(numeratorNum2.getText().toString());
+        int denom1 = fixInputAndConvert(denomNum1.getText().toString());
+        int denom2 = fixInputAndConvert(denomNum2.getText().toString());
+        int feetNumber1 = fixInputAndConvert(feetNum1.getText().toString());
+        int feetNumber2 = fixInputAndConvert(feetNum2.getText().toString());
+        int inchNumber1 = fixInputAndConvert(inchNum1.getText().toString());
+        int inchNumber2 = fixInputAndConvert(inchNum2.getText().toString());
         int totalInches = 0;
         int totalFeet = 0;
 
@@ -201,6 +201,10 @@ public class FractionCalculator extends ActionBarActivity {
         else{
 
         }
+    }
+
+    private int fixInputAndConvert(String auxString) {
+        return (auxString.equals("") || auxString.equals(".")) ? 0 : Integer.valueOf(auxString);
     }
 
     //This functions reduces a fraction to its lowest terms.
