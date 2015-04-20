@@ -319,7 +319,7 @@ public class FractionCalculator extends ActionBarActivity {
             }
 
 
-        } while ((denominator1 != 1) && (denominator2 != 1));
+        } while ((denominator1 != 1) || (denominator2 != 1));
         int result = 1;
         for (int temp : multipliers) {
             result = result * temp;
