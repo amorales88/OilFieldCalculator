@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class FractionCalculator extends ActionBarActivity {
@@ -113,9 +116,36 @@ public class FractionCalculator extends ActionBarActivity {
             setResult(newFraction, totalFeet);
         }
         else if(operation.equals("-")){
+            // use getLCM to find the least common multiple
+            int lcm = getLCM(denom1, denom2);
+            int tempNum1 = (lcm / denom1) * numerator1;
+            int tempNum2 = (lcm / denom2) * numerator2;
+            Toast.makeText(getApplicationContext(), String.valueOf(lcm) + "  " + String.valueOf(tempNum1) + " " + String.valueOf(tempNum2), Toast.LENGTH_SHORT).show();
+
+            newFraction = reduceFraction((tempNum1 - tempNum2), lcm);
+            while (newFraction[0] >= 12) {
+                totalFeet++;
+                newFraction[0] = newFraction[0] - 12;
+            }
+            setResult(newFraction, totalFeet);
 
         }
         else if(operation.equals("X")) {
+            //Converting to a faction
+            while (feetNumber1 > 0) {
+                inchNumber1 = inchNumber1 + 12;
+                feetNumber1--;
+            }
+            while (feetNumber2 > 0) {
+                inchNumber2 = inchNumber2 + 12;
+                feetNumber2--;
+            }
+            if (inchNumber1 > 0) {
+                numerator1 = numerator1 + (inchNumber1 * denom1);
+            }
+            if (inchNumber2 > 0) {
+                numerator2 = numerator2 + (inchNumber2 * denom2);
+            }
 
             //Multiply the fraction and get in lowest term
             newFraction = reduceFraction((numerator1 * numerator2), (denom1 * denom2));
@@ -131,10 +161,7 @@ public class FractionCalculator extends ActionBarActivity {
                     }
 
                     if(totalFeet > 0){
-                        if(totalInches > 0)
-                            result.setText(totalFeet + "ft. " + totalInches + " " + "in.");
-                        else
-                            result.setText(totalFeet + "ft.");
+                        result.setText(totalFeet + "ft. " + totalInches + " " + "in.");
                     }
                     else{
                         result.setText(totalInches + "in.");
@@ -147,7 +174,20 @@ public class FractionCalculator extends ActionBarActivity {
                         newFraction[0] = newFraction[0] - 12;
                     }
 
-                    setResult(newFraction,totalFeet);
+                    if(totalFeet > 0){
+                        //Set Text
+                        if (newFraction[1] != 0)
+                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
+                        else
+                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + "in.");
+
+                    }
+                    else {
+                        if(newFraction[1] != 0)
+                            result.setText(newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
+                        else
+                            result.setText(newFraction[0] + "in.");
+                    }
                 }
                 else{
                     newFraction = reduceFraction( (inchNumber2*denom1 * numerator1),(denom1 * denom1));
@@ -156,7 +196,20 @@ public class FractionCalculator extends ActionBarActivity {
                         newFraction[0] = newFraction[0] - 12;
                     }
 
-                    setResult(newFraction,totalFeet);
+                    if(totalFeet > 0){
+                        //Set Text
+                        if (newFraction[1] != 0)
+                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
+                        else
+                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + "in.");
+
+                    }
+                    else {
+                        if(newFraction[1] != 0)
+                            result.setText(newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
+                        else
+                            result.setText(newFraction[0] + "in.");
+                    }
                 }
 
 
@@ -168,7 +221,20 @@ public class FractionCalculator extends ActionBarActivity {
                     newFraction[0] = newFraction[0] - 12;
                 }
 
-                setResult(newFraction,totalFeet);
+                if(totalFeet > 0){
+                    //Set Text
+                    if (newFraction[1] != 0)
+                        result.setText(totalFeet + "ft. " + newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
+                    else
+                        result.setText(totalFeet + "ft. " + newFraction[0] + " " + "in.");
+
+                }
+                else {
+                    if(newFraction[1] != 0)
+                        result.setText(newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
+                    else
+                        result.setText(newFraction[0] + "in.");
+                }
             }
         }
         else{
@@ -206,6 +272,7 @@ public class FractionCalculator extends ActionBarActivity {
         return result;
     }
 
+
     private void setResult(int[] newFraction, int totalFeet){
         if(totalFeet > 0){
             //Set Text
@@ -226,5 +293,42 @@ public class FractionCalculator extends ActionBarActivity {
                 result.setText(newFraction[0] + "in.");
         }
 
+    }
+
+    public int getLCM (int denominator1, int denominator2) {
+        ArrayList<Integer> multipliers = new ArrayList<Integer>();
+
+        int x = 1;
+        do {
+            boolean divisible = false;
+            while(!((modulo(denominator1, x) == 0)||(modulo(denominator1, x) == 0))) {
+                x++;
+            }
+            if (modulo(denominator1, x) == 0) {
+                divisible = true;
+                denominator1 = denominator1 / x;
+            }
+            if (modulo(denominator2, x) == 0) {
+                divisible = true;
+                denominator2 = denominator2 / x;
+            }
+
+            if (divisible) {
+                multipliers.add(x);
+                divisible = false;
+            }
+
+        } while ((denominator1 != 1) && (denominator2 != 1));
+        int result = 1;
+        for (int temp : multipliers) {
+            result = result * temp;
+        }
+        return result;
+    }
+
+
+    public int modulo (int m, int n) {
+        int mod = m % n; // this returns the remainder. To get the modulo, you should tamper a bit with the result as in next line
+        return (mod < 0) ? mod + n : mod;
     }
 }
