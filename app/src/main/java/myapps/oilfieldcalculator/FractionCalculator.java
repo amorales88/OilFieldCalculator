@@ -298,10 +298,11 @@ public class FractionCalculator extends ActionBarActivity {
     public int getLCM (int denominator1, int denominator2) {
         ArrayList<Integer> multipliers = new ArrayList<Integer>();
 
-        int x = 1;
+        int x = 2;
         do {
             boolean divisible = false;
-            while(!((modulo(denominator1, x) == 0)||(modulo(denominator1, x) == 0))) {
+
+            if((modulo(denominator1, x) != 0)&&(modulo(denominator2, x) != 0)) {
                 x++;
             }
             if (modulo(denominator1, x) == 0) {
@@ -315,8 +316,8 @@ public class FractionCalculator extends ActionBarActivity {
 
             if (divisible) {
                 multipliers.add(x);
-                divisible = false;
             }
+
 
         } while ((denominator1 != 1) && (denominator2 != 1));
         int result = 1;
