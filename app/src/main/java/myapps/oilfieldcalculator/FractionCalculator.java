@@ -72,10 +72,17 @@ public class FractionCalculator extends ActionBarActivity {
         //int[] fraction = reduceFraction(Integer.valueOf(numeratorNum1.getText().toString()), Integer.valueOf(denomNum1.getText().toString()));
         //result.setText(fraction[0] + "/" + fraction[1] + "/" + fraction[2]);
         //If the value is blank or '.', assign 0
+
         int numerator1 = fixInputAndConvert(numeratorNum1.getText().toString());
         int numerator2 = fixInputAndConvert(numeratorNum2.getText().toString());
         int denom1 = fixInputAndConvert(denomNum1.getText().toString());
+        if (denom1 == 0) {
+            denom1 = 1;
+        }
         int denom2 = fixInputAndConvert(denomNum2.getText().toString());
+        if (denom2 == 0) {
+            denom2 = 1;
+        }
         int feetNumber1 = fixInputAndConvert(feetNum1.getText().toString());
         int feetNumber2 = fixInputAndConvert(feetNum2.getText().toString());
         int inchNumber1 = fixInputAndConvert(inchNum1.getText().toString());
@@ -89,7 +96,7 @@ public class FractionCalculator extends ActionBarActivity {
 
         String operation = operatorSpinner.getSelectedItem().toString();
 
-        //Converting to a faction
+        //Converting to a fraction
         if (feetNumber1 > 0) {
             inchNumber1 = inchNumber1 + (feetNumber1 * 12);;
         }
@@ -120,7 +127,6 @@ public class FractionCalculator extends ActionBarActivity {
             int lcm = getLCM(denom1, denom2);
             int tempNum1 = (lcm / denom1) * numerator1;
             int tempNum2 = (lcm / denom2) * numerator2;
-            Toast.makeText(getApplicationContext(), String.valueOf(lcm) + "  " + String.valueOf(tempNum1) + " " + String.valueOf(tempNum2), Toast.LENGTH_SHORT).show();
 
             newFraction = reduceFraction((tempNum1 - tempNum2), lcm);
             while (newFraction[0] >= 12) {
@@ -131,21 +137,6 @@ public class FractionCalculator extends ActionBarActivity {
 
         }
         else if(operation.equals("X")) {
-            //Converting to a faction
-            while (feetNumber1 > 0) {
-                inchNumber1 = inchNumber1 + 12;
-                feetNumber1--;
-            }
-            while (feetNumber2 > 0) {
-                inchNumber2 = inchNumber2 + 12;
-                feetNumber2--;
-            }
-            if (inchNumber1 > 0) {
-                numerator1 = numerator1 + (inchNumber1 * denom1);
-            }
-            if (inchNumber2 > 0) {
-                numerator2 = numerator2 + (inchNumber2 * denom2);
-            }
 
             //Multiply the fraction and get in lowest term
             newFraction = reduceFraction((numerator1 * numerator2), (denom1 * denom2));
@@ -174,20 +165,7 @@ public class FractionCalculator extends ActionBarActivity {
                         newFraction[0] = newFraction[0] - 12;
                     }
 
-                    if(totalFeet > 0){
-                        //Set Text
-                        if (newFraction[1] != 0)
-                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                        else
-                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + "in.");
-
-                    }
-                    else {
-                        if(newFraction[1] != 0)
-                            result.setText(newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                        else
-                            result.setText(newFraction[0] + "in.");
-                    }
+                    setResult(newFraction, totalFeet);
                 }
                 else{
                     newFraction = reduceFraction( (inchNumber2*denom1 * numerator1),(denom1 * denom1));
@@ -196,20 +174,7 @@ public class FractionCalculator extends ActionBarActivity {
                         newFraction[0] = newFraction[0] - 12;
                     }
 
-                    if(totalFeet > 0){
-                        //Set Text
-                        if (newFraction[1] != 0)
-                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                        else
-                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + "in.");
-
-                    }
-                    else {
-                        if(newFraction[1] != 0)
-                            result.setText(newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                        else
-                            result.setText(newFraction[0] + "in.");
-                    }
+                    setResult(newFraction, totalFeet);
                 }
 
 
@@ -221,24 +186,16 @@ public class FractionCalculator extends ActionBarActivity {
                     newFraction[0] = newFraction[0] - 12;
                 }
 
-                if(totalFeet > 0){
-                    //Set Text
-                    if (newFraction[1] != 0)
-                        result.setText(totalFeet + "ft. " + newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                    else
-                        result.setText(totalFeet + "ft. " + newFraction[0] + " " + "in.");
-
-                }
-                else {
-                    if(newFraction[1] != 0)
-                        result.setText(newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                    else
-                        result.setText(newFraction[0] + "in.");
-                }
+                setResult(newFraction, totalFeet);
             }
         }
-        else{
-
+        else{ // Division
+            newFraction = reduceFraction(numerator1 * denom2, numerator2 * denom1);
+            while (newFraction[0] >= 12) {
+                totalFeet++;
+                newFraction[0] = newFraction[0] - 12;
+            }
+            setResult(newFraction, totalFeet);
         }
     }
 
