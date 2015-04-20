@@ -85,28 +85,37 @@ public class FractionCalculator extends ActionBarActivity {
 
 
         String operation = operatorSpinner.getSelectedItem().toString();
-        if(operation.equals("+")){
 
+        //Converting to a faction
+        if (feetNumber1 > 0) {
+            inchNumber1 = inchNumber1 + (feetNumber1 * 12);;
+        }
+        if (feetNumber2 > 0) {
+            inchNumber2 = inchNumber2 + (feetNumber2 * 12);
+        }
+        if (inchNumber1 > 0) {
+            numerator1 = numerator1 + (inchNumber1 * denom1);
+        }
+        if (inchNumber2 > 0) {
+            numerator2 = numerator2 + (inchNumber2 * denom2);
+        }
+
+
+        if(operation.equals("+")){
+            numerator1 = numerator1 * denom2;
+            numerator2 = numerator2 * denom1;
+
+            newFraction = reduceFraction((numerator1 + numerator2), (denom1 * denom2));
+            while (newFraction[0] >= 12) {
+                totalFeet++;
+                newFraction[0] = newFraction[0] - 12;
+            }
+            setResult(newFraction, totalFeet);
         }
         else if(operation.equals("-")){
 
         }
         else if(operation.equals("X")) {
-            //Converting to a faction
-            while (feetNumber1 > 0) {
-                inchNumber1 = inchNumber1 + 12;
-                feetNumber1--;
-            }
-            while (feetNumber2 > 0) {
-                inchNumber2 = inchNumber2 + 12;
-                feetNumber2--;
-            }
-            if (inchNumber1 > 0) {
-                numerator1 = numerator1 + (inchNumber1 * denom1);
-            }
-            if (inchNumber2 > 0) {
-                numerator2 = numerator2 + (inchNumber2 * denom2);
-            }
 
             //Multiply the fraction and get in lowest term
             newFraction = reduceFraction((numerator1 * numerator2), (denom1 * denom2));
@@ -122,7 +131,10 @@ public class FractionCalculator extends ActionBarActivity {
                     }
 
                     if(totalFeet > 0){
-                        result.setText(totalFeet + "ft. " + totalInches + " " + "in.");
+                        if(totalInches > 0)
+                            result.setText(totalFeet + "ft. " + totalInches + " " + "in.");
+                        else
+                            result.setText(totalFeet + "ft.");
                     }
                     else{
                         result.setText(totalInches + "in.");
@@ -135,20 +147,7 @@ public class FractionCalculator extends ActionBarActivity {
                         newFraction[0] = newFraction[0] - 12;
                     }
 
-                    if(totalFeet > 0){
-                        //Set Text
-                        if (newFraction[1] != 0)
-                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                        else
-                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + "in.");
-
-                    }
-                    else {
-                        if(newFraction[1] != 0)
-                            result.setText(newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                        else
-                            result.setText(newFraction[0] + "in.");
-                    }
+                    setResult(newFraction,totalFeet);
                 }
                 else{
                     newFraction = reduceFraction( (inchNumber2*denom1 * numerator1),(denom1 * denom1));
@@ -157,20 +156,7 @@ public class FractionCalculator extends ActionBarActivity {
                         newFraction[0] = newFraction[0] - 12;
                     }
 
-                    if(totalFeet > 0){
-                        //Set Text
-                        if (newFraction[1] != 0)
-                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                        else
-                            result.setText(totalFeet + "ft. " + newFraction[0] + " " + "in.");
-
-                    }
-                    else {
-                        if(newFraction[1] != 0)
-                            result.setText(newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                        else
-                            result.setText(newFraction[0] + "in.");
-                    }
+                    setResult(newFraction,totalFeet);
                 }
 
 
@@ -182,20 +168,7 @@ public class FractionCalculator extends ActionBarActivity {
                     newFraction[0] = newFraction[0] - 12;
                 }
 
-                if(totalFeet > 0){
-                    //Set Text
-                    if (newFraction[1] != 0)
-                        result.setText(totalFeet + "ft. " + newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                    else
-                        result.setText(totalFeet + "ft. " + newFraction[0] + " " + "in.");
-
-                }
-                else {
-                    if(newFraction[1] != 0)
-                        result.setText(newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
-                    else
-                        result.setText(newFraction[0] + "in.");
-                }
+                setResult(newFraction,totalFeet);
             }
         }
         else{
@@ -231,5 +204,27 @@ public class FractionCalculator extends ActionBarActivity {
         result[2] = denom;
 
         return result;
+    }
+
+    private void setResult(int[] newFraction, int totalFeet){
+        if(totalFeet > 0){
+            //Set Text
+            if (newFraction[1] != 0 && newFraction[0] != 0)
+                result.setText(totalFeet + "ft. " + newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
+            else if(newFraction[1] != 0)
+                result.setText(totalFeet + "ft. " + newFraction[1] + "/" + newFraction[2] + "in.");
+            else
+                result.setText(totalFeet + "ft. " + newFraction[0] + " " + "in.");
+
+        }
+        else {
+            if(newFraction[1] != 0 && newFraction[0] != 0)
+                result.setText(newFraction[0] + " " + newFraction[1] + "/" + newFraction[2] + "in.");
+            else if(newFraction[1] != 0)
+                result.setText(newFraction[1] + "/" + newFraction[2] + "in.");
+            else
+                result.setText(newFraction[0] + "in.");
+        }
+
     }
 }
