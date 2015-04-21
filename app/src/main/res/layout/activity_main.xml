@@ -4,7 +4,8 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/scrollProfile">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -161,7 +162,8 @@
             android:layout_alignEnd="@+id/TotalObservedVolume"
             android:layout_below="@+id/TotalObservedVolume"
             android:nextFocusForward="@+id/AmbientTemperature"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -192,7 +194,8 @@
             android:layout_alignEnd="@+id/FreeWaterVolume"
             android:layout_below="@+id/FreeWaterVolume"
             android:nextFocusDown="@+id/StrappedAPI"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -330,7 +333,9 @@
             android:layout_alignRight="@+id/ActualTemp"
             android:layout_alignEnd="@+id/ActualTemp"
             android:nextFocusDown="@+id/API"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -361,7 +366,9 @@
             android:layout_alignRight="@+id/BblsPer"
             android:layout_alignEnd="@+id/BblsPer"
             android:layout_below="@+id/StrappedAPI"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -386,7 +393,10 @@
             android:layout_alignBottom="@+id/RoofCorrectionText"
             android:layout_toRightOf="@+id/RoofCorrectionText"
             android:layout_alignRight="@+id/GaugeInCriticalZoneSpinner"
-            android:layout_alignEnd="@+id/GaugeInCriticalZoneSpinner" />
+            android:layout_alignEnd="@+id/GaugeInCriticalZoneSpinner"
+            android:layout_below="@+id/API"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -409,9 +419,90 @@
             android:maxLength="15"
             android:layout_alignBottom="@+id/GrossObservedVolumeText"
             android:layout_toRightOf="@+id/GrossObservedVolumeText"
-            android:layout_alignRight="@+id/GaugeInCriticalZoneSpinner"
-            android:layout_alignEnd="@+id/GaugeInCriticalZoneSpinner"
-            android:text="0.0" />
+            android:text="0.0"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/RoofCorrectionText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="G.S.V. @ 60°F:"
+            android:id="@+id/GSVText"
+            android:layout_below="@+id/GrossObservedVolumeText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/GSV"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:text="0.0"
+            android:layout_below="@+id/GrossObservedVolumeText"
+            android:layout_toRightOf="@+id/GSVText"
+            android:layout_alignBottom="@+id/GSVText"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="S &amp; W%:"
+            android:id="@+id/SWText"
+            android:layout_alignParentBottom="false"
+            android:layout_below="@+id/GSVText"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/SW"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:layout_toRightOf="@+id/SWText"
+            android:layout_alignBottom="@+id/SWText"
+            android:layout_below="@+id/GSV"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="S &amp; W Volume:"
+            android:id="@+id/SWVolumeText"
+            android:layout_alignParentBottom="false"
+            android:layout_below="@+id/SWText"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/SWVolume"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false"
+            android:layout_alignBottom="@+id/SWVolumeText"
+            android:layout_below="@+id/SW"
+            android:layout_toRightOf="@+id/SWVolumeText"
+            android:layout_alignParentStart="false" />
 
     </RelativeLayout>
 </ScrollView>
