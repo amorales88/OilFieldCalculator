@@ -30,7 +30,7 @@
         android:hint="U"
         android:gravity="center"
         android:maxLength="5"
-        android:nextFocusRight="@+id/TempMiddle"/>
+        android:nextFocusDown="@+id/TempMiddle"/>
 
     <EditText
         android:layout_width="60dp"
@@ -47,7 +47,7 @@
         android:layout_toRightOf="@+id/TempUpper"
         android:layout_toEndOf="@+id/TempUpper"
         android:maxLength="5"
-        android:nextFocusRight="@+id/TempLower"/>
+        android:nextFocusDown="@+id/TempLower"/>
 
     <EditText
         android:layout_width="60dp"
@@ -258,5 +258,143 @@
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
         android:layout_toRightOf="@+id/GaugeInCriticalZoneText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Strapped API:"
+        android:id="@+id/StrappedAPIText"
+        android:layout_below="@+id/GaugeInCriticalZoneText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bbls per °:"
+        android:id="@+id/BblsPerText"
+        android:layout_alignBottom="@+id/StrappedAPI"
+        android:layout_toRightOf="@+id/GaugeInCriticalZoneText"
+        android:layout_toEndOf="@+id/GaugeInCriticalZoneText" />
+
+    <EditText
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/StrappedAPI"
+        android:editable="false"
+        android:enabled="true"
+        android:gravity="center|bottom"
+        android:textAlignment="center"
+        android:paddingBottom="5dp"
+        android:maxLength="6"
+        android:layout_below="@+id/GaugeInCriticalZoneText"
+        android:layout_toRightOf="@+id/StrappedAPIText"
+        android:layout_alignBottom="@+id/StrappedAPIText"
+        android:layout_toStartOf="@+id/BblsPerText"
+        android:layout_alignRight="@+id/GaugeInCriticalZoneText"
+        android:layout_alignEnd="@+id/GaugeInCriticalZoneText" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/BblsPer"
+        android:editable="false"
+        android:enabled="true"
+        android:gravity="center|bottom"
+        android:textAlignment="center"
+        android:paddingBottom="5dp"
+        android:maxLength="6"
+        android:layout_alignBottom="@+id/BblsPerText"
+        android:layout_toRightOf="@+id/BblsPerText"
+        android:layout_alignTop="@+id/StrappedAPI"
+        android:layout_alignRight="@+id/ActualTemp"
+        android:layout_alignEnd="@+id/ActualTemp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Roof Correction: "
+        android:id="@+id/RoofCorrectionText"
+        android:layout_below="@+id/APIat60Text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/RoofCorrection"
+        android:gravity="center|bottom"
+        android:editable="false"
+        android:text="0.0"
+        android:maxLength="12"
+        android:layout_alignBottom="@+id/RoofCorrectionText"
+        android:layout_toRightOf="@+id/RoofCorrectionText"
+        android:layout_alignRight="@+id/GaugeInCriticalZoneSpinner"
+        android:layout_alignEnd="@+id/GaugeInCriticalZoneSpinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Gross Observed Volume:"
+        android:id="@+id/GrossObservedVolumeText"
+        android:layout_below="@+id/RoofCorrectionText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/GrossObservedVolume"
+        android:gravity="center|bottom"
+        android:editable="false"
+        android:maxLength="15"
+        android:layout_alignBottom="@+id/GrossObservedVolumeText"
+        android:layout_toRightOf="@+id/GrossObservedVolumeText"
+        android:layout_alignRight="@+id/GaugeInCriticalZoneSpinner"
+        android:layout_alignEnd="@+id/GaugeInCriticalZoneSpinner"
+        android:text="0.0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="API @ 60°F:"
+        android:id="@+id/APIat60Text"
+        android:layout_below="@+id/StrappedAPI"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/API"
+        android:editable="false"
+        android:enabled="true"
+        android:gravity="center|bottom"
+        android:textAlignment="center"
+        android:paddingBottom="5dp"
+        android:maxLength="15"
+        android:nextFocusForward="@+id/AmbientTemperature"
+        android:layout_alignBottom="@+id/APIat60Text"
+        android:layout_toRightOf="@+id/APIat60Text"
+        android:layout_alignRight="@+id/BblsPer"
+        android:layout_alignEnd="@+id/BblsPer"
+        android:layout_below="@+id/StrappedAPI" />
 
 </RelativeLayout>

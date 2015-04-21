@@ -225,4 +225,14 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:text="Clear"
+        android:id="@+id/ClearButton"
+        android:onClick="clearFields"
+        android:layout_alignTop="@+id/inText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

@@ -98,7 +98,7 @@ public class FractionCalculator extends ActionBarActivity {
 
         //Converting to a fraction
         if (feetNumber1 > 0) {
-            inchNumber1 = inchNumber1 + (feetNumber1 * 12);;
+            inchNumber1 = inchNumber1 + (feetNumber1 * 12);
         }
         if (feetNumber2 > 0) {
             inchNumber2 = inchNumber2 + (feetNumber2 * 12);
@@ -288,5 +288,19 @@ public class FractionCalculator extends ActionBarActivity {
     public int modulo (int m, int n) {
         int mod = m % n; // this returns the remainder. To get the modulo, you should tamper a bit with the result as in next line
         return (mod < 0) ? mod + n : mod;
+    }
+
+    public void clearFields(View v){
+        feetNum1.setText(null);
+        feetNum2.setText(null);
+        inchNum1.setText(null);
+        inchNum2.setText(null);
+        numeratorNum1.setText(null);
+        numeratorNum2.setText(null);
+        denomNum1.setText(null);
+        denomNum2.setText(null);
+        result.setText(null);
+        operatorSpinner.setSelection(0);
+
     }
 }
