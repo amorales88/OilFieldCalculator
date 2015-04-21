@@ -8,7 +8,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +70,7 @@
             android:layout_toRightOf="@+id/TempMiddle"
             android:layout_toEndOf="@+id/TempMiddle"
             android:maxLength="5"
-            android:nextFocusForward="@+id/AvgTempNum"/>
+            android:nextFocusForward="@+id/TotalObservedVolume"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -185,7 +187,8 @@
             android:layout_toRightOf="@+id/AmbientTemperatureText"
             android:layout_alignRight="@+id/FreeWaterVolume"
             android:layout_alignEnd="@+id/FreeWaterVolume"
-            android:layout_below="@+id/FreeWaterVolume" />
+            android:layout_below="@+id/FreeWaterVolume"
+            android:nextFocusDown="@+id/StrappedAPI"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -301,7 +304,8 @@
             android:layout_alignBottom="@+id/StrappedAPIText"
             android:layout_toStartOf="@+id/BblsPerText"
             android:layout_alignRight="@+id/GaugeInCriticalZoneText"
-            android:layout_alignEnd="@+id/GaugeInCriticalZoneText" />
+            android:layout_alignEnd="@+id/GaugeInCriticalZoneText"
+            android:nextFocusDown="@+id/BblsPer"/>
 
         <EditText
             android:layout_width="60dp"
@@ -319,7 +323,8 @@
             android:layout_toRightOf="@+id/BblsPerText"
             android:layout_alignTop="@+id/StrappedAPI"
             android:layout_alignRight="@+id/ActualTemp"
-            android:layout_alignEnd="@+id/ActualTemp" />
+            android:layout_alignEnd="@+id/ActualTemp"
+            android:nextFocusDown="@+id/API"/>
 
         <TextView
             android:layout_width="wrap_content"
