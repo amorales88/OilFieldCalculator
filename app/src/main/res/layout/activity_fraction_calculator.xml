@@ -5,7 +5,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="myapps.oilfieldcalculator.FractionCalculator"
-    android:textAlignment="viewEnd">
+    android:textAlignment="viewEnd"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <EditText
         android:layout_width="40dp"
@@ -20,7 +22,8 @@
         android:layout_marginTop="30dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:nextFocusDown="@+id/inchNum1"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,7 +48,8 @@
         android:layout_toRightOf="@+id/ftText"
         android:layout_toEndOf="@+id/ftText"
         android:maxLength="3"
-        android:layout_alignTop="@+id/feetNum1" />
+        android:layout_alignTop="@+id/feetNum1"
+        android:nextFocusDown="@+id/numeratorNum1"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,7 +83,8 @@
         android:textSize="15dp"
         android:enabled="true"
         android:layout_alignBottom="@+id/inchNum1"
-        android:layout_toRightOf="@+id/inchNum1" />
+        android:layout_toRightOf="@+id/inchNum1"
+        android:nextFocusDown="@+id/feetNum2"/>
 
     <EditText
         android:layout_width="40dp"
@@ -110,7 +115,8 @@
         android:maxLength="3"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/ftText"
-        android:layout_toStartOf="@+id/ftText" />
+        android:layout_toStartOf="@+id/ftText"
+        android:nextFocusDown="@+id/inchNum2"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -134,7 +140,8 @@
         android:maxLength="3"
         android:layout_alignBottom="@+id/textView3"
         android:layout_toLeftOf="@+id/denomNum1"
-        android:layout_toStartOf="@+id/denomNum1" />
+        android:layout_toStartOf="@+id/denomNum1"
+        android:nextFocusDown="@+id/numeratorNum2"/>
 
     <EditText
         android:layout_width="40dp"
@@ -149,7 +156,8 @@
         android:enabled="true"
         android:layout_alignBottom="@+id/inchNum2"
         android:layout_alignLeft="@+id/denomNum1"
-        android:layout_alignStart="@+id/denomNum1" />
+        android:layout_alignStart="@+id/denomNum1"
+        android:imeOptions="actionDone"/>
 
     <View
         android:layout_width="25dp"
@@ -176,7 +184,8 @@
         android:layout_alignRight="@+id/denomNum2"
         android:layout_alignEnd="@+id/Divider2"
         android:layout_alignLeft="@+id/denomNum2"
-        android:layout_above="@+id/Divider2" />
+        android:layout_above="@+id/Divider2"
+        android:nextFocusDown="@+id/denomNum2"/>
 
     <TextView
         android:layout_width="wrap_content"
