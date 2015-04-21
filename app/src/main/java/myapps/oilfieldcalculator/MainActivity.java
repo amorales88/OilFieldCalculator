@@ -1,6 +1,7 @@
 package myapps.oilfieldcalculator;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -91,6 +93,7 @@ public class MainActivity extends ActionBarActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Critical_Zone, android.R.layout.simple_spinner_dropdown_item);
         operatorSpinner.setAdapter(adapter);
 
+
     }
 
 
@@ -123,8 +126,13 @@ public class MainActivity extends ActionBarActivity {
             startActivity(fracCalcIntent);
         }
 
+        if(id == R.id.action_share) {
+            share();
+        }
+
         return super.onOptionsItemSelected(item);
     }
+
 
 
     public double calculateAverageTemp(){
@@ -139,7 +147,11 @@ public class MainActivity extends ActionBarActivity {
         result = result + ((lowerTemp.getText().toString().equals("") || lowerTemp.getText().toString().equals("."))? 0 : Double.valueOf(lowerTemp.getText().toString()));
 
         //Round to the 1st decimal
-        return ((double)Math.round((result/3) * 10) / 10);
+        int supplied = 0;
+        if (!upperTemp.getText().toString().equals("")) supplied++;
+        if (!middleTemp.getText().toString().equals("")) supplied++;
+        if (!lowerTemp.getText().toString().equals("")) supplied++;
+        return ((double)Math.round((result/supplied) * 10) / 10);
 
     }
 
@@ -159,6 +171,48 @@ public class MainActivity extends ActionBarActivity {
 
         //Round to the 5th decimal
         return ((double)Math.round(result * 100000) / 100000);
+    }
+
+    public String getScreenValues() {
+        String retStr = "";
+        RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+
+        /*
+        retStr = "Temperatures: " + upperTemp.getText().toString() + " " + middleTemp.getText().toString() + " " + lowerTemp.getText().toString() + "\n";
+        retStr = retStr + "Average Temperature: " + AvgTempNum.getText().toString() + "\n";
+        retStr = retStr + "Total Observed Volume: " + TotalObservedVolume.getText().toString();
+        retStr = retStr + ""
+        */
+        for(int i = 0; i < relLayout.getChildCount(); i++) {
+             View view = relLayout.getChildAt(i);
+            if(view instanceof TextView) {
+                TextView tv = (TextView) view;
+                retStr = retStr + tv.getText().toString();
+            }
+
+
+            if(view instanceof Spinner) {
+                Spinner sp = (Spinner) view;
+                retStr = retStr + sp.getSelectedItem().toString();
+            }
+
+            retStr = retStr + " ";
+
+            if ((view.getId() == R.id.TempLower)||(view.getId() == R.id.AvgTempNum)||(view.getId() == R.id.TotalObservedVolume)||(view.getId() == R.id.FreeWaterVolume)||
+                (view.getId() == R.id.AmbientTemperature)||(view.getId() == R.id.ctshFactor)||(view.getId() == R.id.ActualTemp)||(view.getId() == R.id.GaugeInCriticalZoneSpinner)||
+                (view.getId() == R.id.BblsPer)||(view.getId() == R.id.API)||(view.getId() == R.id.RoofCorrection)||(view.getId() == R.id.GrossObservedVolume)) {
+                retStr = retStr + "\n";
+            }
+        }
+
+        return retStr;
+    }
+
+    public void share() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, getScreenValues());
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_using)));
     }
 
 }

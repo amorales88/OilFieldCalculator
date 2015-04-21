@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:id="@+id/relativeLayout">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -128,7 +129,8 @@
             android:textAlignment="center"
             android:paddingBottom="5dp"
             android:maxLength="13"
-            android:nextFocusForward="@+id/FreeWaterVolume"/>
+            android:nextFocusForward="@+id/FreeWaterVolume"
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -158,7 +160,8 @@
             android:layout_alignRight="@+id/TotalObservedVolume"
             android:layout_alignEnd="@+id/TotalObservedVolume"
             android:layout_below="@+id/TotalObservedVolume"
-            android:nextFocusForward="@+id/AmbientTemperature"/>
+            android:nextFocusForward="@+id/AmbientTemperature"
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -188,7 +191,8 @@
             android:layout_alignRight="@+id/FreeWaterVolume"
             android:layout_alignEnd="@+id/FreeWaterVolume"
             android:layout_below="@+id/FreeWaterVolume"
-            android:nextFocusDown="@+id/StrappedAPI"/>
+            android:nextFocusDown="@+id/StrappedAPI"
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -305,7 +309,8 @@
             android:layout_toStartOf="@+id/BblsPerText"
             android:layout_alignRight="@+id/GaugeInCriticalZoneText"
             android:layout_alignEnd="@+id/GaugeInCriticalZoneText"
-            android:nextFocusDown="@+id/BblsPer"/>
+            android:nextFocusDown="@+id/BblsPer"
+            android:textSize="16dp" />
 
         <EditText
             android:layout_width="60dp"
@@ -324,7 +329,39 @@
             android:layout_alignTop="@+id/StrappedAPI"
             android:layout_alignRight="@+id/ActualTemp"
             android:layout_alignEnd="@+id/ActualTemp"
-            android:nextFocusDown="@+id/API"/>
+            android:nextFocusDown="@+id/API"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="API @ 60°F:"
+            android:id="@+id/APIat60Text"
+            android:layout_below="@+id/StrappedAPI"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/API"
+            android:editable="false"
+            android:enabled="true"
+            android:gravity="center|bottom"
+            android:textAlignment="center"
+            android:paddingBottom="5dp"
+            android:maxLength="15"
+            android:nextFocusForward="@+id/AmbientTemperature"
+            android:layout_alignBottom="@+id/APIat60Text"
+            android:layout_toRightOf="@+id/APIat60Text"
+            android:layout_alignRight="@+id/BblsPer"
+            android:layout_alignEnd="@+id/BblsPer"
+            android:layout_below="@+id/StrappedAPI"
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -376,34 +413,5 @@
             android:layout_alignEnd="@+id/GaugeInCriticalZoneSpinner"
             android:text="0.0" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="API @ 60°F:"
-            android:id="@+id/APIat60Text"
-            android:layout_below="@+id/StrappedAPI"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp" />
-
-        <EditText
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/API"
-            android:editable="false"
-            android:enabled="true"
-            android:gravity="center|bottom"
-            android:textAlignment="center"
-            android:paddingBottom="5dp"
-            android:maxLength="15"
-            android:nextFocusForward="@+id/AmbientTemperature"
-            android:layout_alignBottom="@+id/APIat60Text"
-            android:layout_toRightOf="@+id/APIat60Text"
-            android:layout_alignRight="@+id/BblsPer"
-            android:layout_alignEnd="@+id/BblsPer"
-            android:layout_below="@+id/StrappedAPI" />
     </RelativeLayout>
 </ScrollView>

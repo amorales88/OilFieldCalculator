@@ -21,13 +21,14 @@ public class Converter extends Activity {
     Spinner spinner;
     Spinner spinner2;
     EditText editText;
+    Spinner magSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
 
-        Spinner magSpinner = (Spinner) findViewById(R.id.magnitudeSpinner);
+        magSpinner = (Spinner) findViewById(R.id.magnitudeSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.magnitude_array, android.R.layout.simple_spinner_dropdown_item);
         magSpinner.setAdapter(adapter);
         // TODO: Change Spinners values depending on choice (volume/distance)
@@ -70,6 +71,18 @@ public class Converter extends Activity {
 
         spinner2.setOnItemSelectedListener(spinner.getOnItemSelectedListener());
         editText.setSelection(0,1);
+
+        AdapterView.OnItemSelectedListener magListener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
     }
 
 
@@ -97,10 +110,9 @@ public class Converter extends Activity {
 
     private void setValuesToSpinners(int spinnerId) {
         Spinner spinner = (Spinner) findViewById(spinnerId);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.distance_array, android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-
     }
 
     private void updateAndConvert() {
@@ -110,14 +122,16 @@ public class Converter extends Activity {
             editText.setSelection(0,1);
         }
 
-
-        //if(editText.getText().toString().equals(".")) {
-        //   editText.setText("0.");
-        //editText.setSelection(1);
-        //}
-
         // First, convert whatever was input to Meters. (I thought having it in a unique measure would help)
-        float baseValue = Float.parseFloat(editText.getText().toString());
+
+        float baseValue = 0;
+        if(editText.getText().toString().equals(".")) {
+            baseValue = 0;
+        }
+        else {
+            baseValue = Float.parseFloat(editText.getText().toString());
+        }
+
         double convFactor = 0;
         double result = 0;
         String convertFrom = spinner.getSelectedItem().toString();

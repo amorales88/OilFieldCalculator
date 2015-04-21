@@ -222,7 +222,8 @@
         android:layout_alignParentStart="true"
         android:textSize="21dp"
         android:textStyle="normal"
-        android:onClick="calculateResult" />
+        android:onClick="calculateResult"
+        android:background="#dba2a2a2" />
 
     <TextView
         android:layout_width="200dp"
@@ -242,6 +243,7 @@
         android:onClick="clearFields"
         android:layout_alignTop="@+id/inText"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="#dba2a2a2" />
 
 </RelativeLayout>
