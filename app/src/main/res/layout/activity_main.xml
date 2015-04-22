@@ -92,16 +92,16 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/AvgTempNum"
             android:layout_alignBottom="@+id/AverageTemperatureText"
-            android:layout_alignRight="@+id/TempLower"
-            android:layout_alignEnd="@+id/TempLower"
             android:layout_toRightOf="@+id/AverageTemperatureText"
-            android:layout_toEndOf="@+id/AverageTemperatureText"
             android:layout_below="@+id/TempMiddle"
             android:gravity="center|bottom"
             android:editable="false"
             android:text="0.0"
             android:maxLength="7"
-            android:nextFocusForward="@+id/TotalObservedVolumer"/>
+            android:nextFocusForward="@+id/TotalObservedVolumer"
+            android:layout_alignRight="@+id/FreeWaterVolume"
+            android:layout_alignEnd="@+id/FreeWaterVolume"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -222,7 +222,8 @@
             android:layout_toRightOf="@+id/TemperaturesText"
             android:layout_alignRight="@+id/AmbientTemperature"
             android:layout_alignEnd="@+id/AmbientTemperature"
-            android:layout_below="@+id/AmbientTemperatureText" />
+            android:layout_below="@+id/AmbientTemperatureText"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -248,7 +249,8 @@
             android:layout_toRightOf="@+id/ctshFactorText"
             android:layout_alignRight="@+id/ctshFactor"
             android:layout_alignEnd="@+id/ctshFactor"
-            android:layout_below="@+id/ctshFactor" />
+            android:layout_below="@+id/ctshFactor"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -272,7 +274,8 @@
             android:layout_marginRight="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toRightOf="@+id/GaugeInCriticalZoneText"/>
+            android:layout_toRightOf="@+id/GaugeInCriticalZoneText"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
