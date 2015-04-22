@@ -144,7 +144,7 @@ public class Converter extends Activity {
 
         // First, convert whatever was input to Meters. (I thought having it in a unique measure would help)
 
-        float baseValue = 0;
+        float baseValue;
         if(editText.getText().toString().equals(".")) {
             baseValue = 0;
         }
@@ -157,26 +157,36 @@ public class Converter extends Activity {
         String convertFrom = spinner.getSelectedItem().toString();
         String convertTo = spinner2.getSelectedItem().toString();
         if(magSpinner.getSelectedItem().toString().equals("Distance")) {
-            if (convertFrom.equals("m")) {
-                convFactor = 1;
-            } else if (convertFrom.equals("ft")) {
-                convFactor = 0.3048;
-            } else if (convertFrom.equals("mi")) {
-                convFactor = 1609.34;
-            } else if (convertFrom.equals("km")) {
-                convFactor = 1000;
+            switch (convertFrom) {
+                case "m":
+                    convFactor = 1;
+                    break;
+                case "ft":
+                    convFactor = 0.3048;
+                    break;
+                case "mi":
+                    convFactor = 1609.34;
+                    break;
+                case "km":
+                    convFactor = 1000;
+                    break;
             }
 
             result = baseValue * convFactor;
             // Now all distances are in meter
-            if (convertTo.equals("m")) {
-                convFactor = 1;
-            } else if (convertTo.equals("ft")) {
-                convFactor = 0.3048;
-            } else if (convertTo.equals("mi")) {
-                convFactor = 1609.34;
-            } else if (convertTo.equals("km")) {
-                convFactor = 1000;
+            switch (convertTo) {
+                case "m":
+                    convFactor = 1;
+                    break;
+                case "ft":
+                    convFactor = 0.3048;
+                    break;
+                case "mi":
+                    convFactor = 1609.34;
+                    break;
+                case "km":
+                    convFactor = 1000;
+                    break;
             }
             result = result / convFactor;
         }
@@ -184,47 +194,49 @@ public class Converter extends Activity {
             // TODO: Implement volume conversion
         }
         else if(magSpinner.getSelectedItem().toString().equals("Quick Conv.")) {
-            if(convertFrom.equals("Barrels to Gallons")) {
-                result = baseValue * 42;
-            }
-            else if(convertFrom.equals("Gallons to Barrels")) {
-                result = baseValue / 42;
-            }
-            else if(convertFrom.equals("Lbs to Metric Tons")) {
-                result = baseValue / 2204.62;
-            }
-            else if(convertFrom.equals("Lbs to Long Tons")) {
-                result = baseValue / 2240.00;
-            }
-            else if(convertFrom.equals("Lbs to Short Tons")) {
-                result = baseValue / 2000.00;
-            }
-            else if(convertFrom.equals("Lbs to Kilos")) {
-                result = baseValue / 2.20462;
-            }
-            else if(convertFrom.equals("m3 to Barrels")) {
-                result = baseValue * 6.28981;
-            }
-            else if(convertFrom.equals("m3 to Gallons")) {
-                result = baseValue * 264.172;
-            }
-            else if(convertFrom.equals("Lbs/Gal to Liter Weight")) {
-                result = baseValue * 0.1198264;
-            }
-            else if(convertFrom.equals("Gallons to m3")) {
-                result = baseValue * 0.00378;
-            }
-            else if(convertFrom.equals("Celsius to Fahrenheit")) {
-                result = (baseValue * 1.8) + 32;
-            }
-            else if(convertFrom.equals("Bar to PSI")) {
-                result = baseValue * 14.504;
-            }
-            else if(convertFrom.equals("Lbs/Gal to Specific Gravity")) {
-                result = baseValue / 8.32828;
-            }
-            else if(convertFrom.equals("Gallons to Liters")) {
-                result = baseValue * 3.785412;
+            switch (convertFrom) {
+                case "Barrels to Gallons":
+                    result = baseValue * 42;
+                    break;
+                case "Gallons to Barrels":
+                    result = baseValue / 42;
+                    break;
+                case "Lbs to Metric Tons":
+                    result = baseValue / 2204.62;
+                    break;
+                case "Lbs to Long Tons":
+                    result = baseValue / 2240.00;
+                    break;
+                case "Lbs to Short Tons":
+                    result = baseValue / 2000.00;
+                    break;
+                case "Lbs to Kilos":
+                    result = baseValue / 2.20462;
+                    break;
+                case "m3 to Barrels":
+                    result = baseValue * 6.28981;
+                    break;
+                case "m3 to Gallons":
+                    result = baseValue * 264.172;
+                    break;
+                case "Lbs/Gal to Liter Weight":
+                    result = baseValue * 0.1198264;
+                    break;
+                case "Gallons to m3":
+                    result = baseValue * 0.00378;
+                    break;
+                case "Celsius to Fahrenheit":
+                    result = (baseValue * 1.8) + 32;
+                    break;
+                case "Bar to PSI":
+                    result = baseValue * 14.504;
+                    break;
+                case "Lbs/Gal to Specific Gravity":
+                    result = baseValue / 8.32828;
+                    break;
+                case "Gallons to Liters":
+                    result = baseValue * 3.785412;
+                    break;
             }
 
         }
