@@ -5,13 +5,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
-    android:id="@+id/scrollProfile">
+    android:id="@+id/scrollProfile"
+    android:descendantFocusability="beforeDescendants"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:id="@+id/relativeLayout">
         <TextView
             android:layout_width="wrap_content"
@@ -131,7 +132,7 @@
             android:paddingBottom="5dp"
             android:maxLength="13"
             android:nextFocusForward="@+id/FreeWaterVolume"
-            android:textSize="16dp" />
+            android:textSize="16dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -163,7 +164,7 @@
             android:layout_below="@+id/TotalObservedVolume"
             android:nextFocusForward="@+id/AmbientTemperature"
             android:textSize="16dp"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -195,7 +196,7 @@
             android:layout_below="@+id/FreeWaterVolume"
             android:nextFocusDown="@+id/StrappedAPI"
             android:textSize="16dp"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -271,7 +272,7 @@
             android:layout_marginRight="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toRightOf="@+id/GaugeInCriticalZoneText" />
+            android:layout_toRightOf="@+id/GaugeInCriticalZoneText"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -313,7 +314,7 @@
             android:layout_alignRight="@+id/GaugeInCriticalZoneText"
             android:layout_alignEnd="@+id/GaugeInCriticalZoneText"
             android:nextFocusDown="@+id/BblsPer"
-            android:textSize="16dp" />
+            android:textSize="16dp"/>
 
         <EditText
             android:layout_width="60dp"
@@ -335,7 +336,7 @@
             android:nextFocusDown="@+id/API"
             android:textSize="16dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -368,7 +369,7 @@
             android:layout_below="@+id/StrappedAPI"
             android:textSize="16dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"/>
 
         <TextView
             android:layout_width="wrap_content"

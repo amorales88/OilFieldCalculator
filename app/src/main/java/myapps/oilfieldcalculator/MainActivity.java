@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,8 @@ public class MainActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ScrollView v = (ScrollView) findViewById(R.id.scrollProfile);
+        v.requestFocus();
 
         upperTemp = (EditText) findViewById(R.id.TempUpper);
         middleTemp = (EditText) findViewById(R.id.TempMiddle);
