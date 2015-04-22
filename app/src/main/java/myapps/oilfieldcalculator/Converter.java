@@ -31,9 +31,11 @@ public class Converter extends Activity {
         magSpinner = (Spinner) findViewById(R.id.magnitudeSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.magnitude_array, android.R.layout.simple_spinner_dropdown_item);
         magSpinner.setAdapter(adapter);
+
         // TODO: Change Spinners values depending on choice (volume/distance)
-        setValuesToSpinners(R.id.spinner);
-        setValuesToSpinners(R.id.spinner2);
+        // Do I still need to set them here or does it get preset automagically?
+        // setValuesToSpinners(R.id.spinner, magSpinner.getSelectedItemId() );
+        //setValuesToSpinners(R.id.spinner2);
 
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
@@ -75,7 +77,23 @@ public class Converter extends Activity {
         AdapterView.OnItemSelectedListener magListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int arrayID = 0;
+                if (magSpinner.getSelectedItem().toString().equals("Distance")) {
+                    arrayID = R.array.distance_array;
+                }
+                else if(magSpinner.getSelectedItem().toString().equals("Volume")) {
+                    arrayID = R.array.volume_array;
+                }
+                else if(magSpinner.getSelectedItem().toString().equals("Quick Conv.")) {
+                    arrayID = R.array.quick_conv_array;
+                }
 
+                setValuesToSpinners(spinner.getId(),arrayID);
+                if(arrayID != R.array.quick_conv_array)
+                   setValuesToSpinners(spinner2.getId(),arrayID);
+
+                // Disable this if it's quick conv.
+                spinner2.setEnabled(arrayID != R.array.quick_conv_array);
             }
 
             @Override
@@ -83,6 +101,7 @@ public class Converter extends Activity {
 
             }
         };
+        magSpinner.setOnItemSelectedListener(magListener);
     }
 
 
@@ -108,10 +127,11 @@ public class Converter extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setValuesToSpinners(int spinnerId) {
+    private void setValuesToSpinners(int spinnerId, int arrayID) {
         Spinner spinner = (Spinner) findViewById(spinnerId);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.distance_array, android.R.layout.simple_spinner_dropdown_item);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, arrayID, android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
 
@@ -136,29 +156,78 @@ public class Converter extends Activity {
         double result = 0;
         String convertFrom = spinner.getSelectedItem().toString();
         String convertTo = spinner2.getSelectedItem().toString();
-        if(convertFrom.equals("m")) {
-            convFactor = 1;
-        } else if(convertFrom.equals("ft")) {
-            convFactor =  0.3048;
-        } else if(convertFrom.equals("mi")) {
-            convFactor = 1609.34;
-        } else if(convertFrom.equals("km")) {
-            convFactor = 1000;
-        }
+        if(magSpinner.getSelectedItem().toString().equals("Distance")) {
+            if (convertFrom.equals("m")) {
+                convFactor = 1;
+            } else if (convertFrom.equals("ft")) {
+                convFactor = 0.3048;
+            } else if (convertFrom.equals("mi")) {
+                convFactor = 1609.34;
+            } else if (convertFrom.equals("km")) {
+                convFactor = 1000;
+            }
 
-        result = baseValue * convFactor;
-        // Now all distances are in meter
-        if(convertTo.equals("m")) {
-            convFactor = 1;
-        } else if(convertTo.equals("ft")) {
-            convFactor = 0.3048;
-        } else if(convertTo.equals("mi")) {
-            convFactor = 1609.34;
-        } else if(convertTo.equals("km")) {
-            convFactor = 1000;
+            result = baseValue * convFactor;
+            // Now all distances are in meter
+            if (convertTo.equals("m")) {
+                convFactor = 1;
+            } else if (convertTo.equals("ft")) {
+                convFactor = 0.3048;
+            } else if (convertTo.equals("mi")) {
+                convFactor = 1609.34;
+            } else if (convertTo.equals("km")) {
+                convFactor = 1000;
+            }
+            result = result / convFactor;
         }
+        else if(magSpinner.getSelectedItem().toString().equals("Volume")) {
+            // TODO: Implement volume conversion
+        }
+        else if(magSpinner.getSelectedItem().toString().equals("Quick Conv.")) {
+            if(convertFrom.equals("Barrels to Gallons")) {
+                result = baseValue * 42;
+            }
+            else if(convertFrom.equals("Gallons to Barrels")) {
+                result = baseValue / 42;
+            }
+            else if(convertFrom.equals("Lbs to Metric Tons")) {
+                result = baseValue / 2204.62;
+            }
+            else if(convertFrom.equals("Lbs to Long Tons")) {
+                result = baseValue / 2240.00;
+            }
+            else if(convertFrom.equals("Lbs to Short Tons")) {
+                result = baseValue / 2000.00;
+            }
+            else if(convertFrom.equals("Lbs to Kilos")) {
+                result = baseValue / 2.20462;
+            }
+            else if(convertFrom.equals("m3 to Barrels")) {
+                result = baseValue * 6.28981;
+            }
+            else if(convertFrom.equals("m3 to Gallons")) {
+                result = baseValue * 264.172;
+            }
+            else if(convertFrom.equals("Lbs/Gal to Liter Weight")) {
+                result = baseValue * 0.1198264;
+            }
+            else if(convertFrom.equals("Gallons to m3")) {
+                result = baseValue * 0.00378;
+            }
+            else if(convertFrom.equals("Celsius to Fahrenheit")) {
+                result = (baseValue * 1.8) + 32;
+            }
+            else if(convertFrom.equals("Bar to PSI")) {
+                result = baseValue * 14.504;
+            }
+            else if(convertFrom.equals("Lbs/Gal to Specific Gravity")) {
+                result = baseValue / 8.32828;
+            }
+            else if(convertFrom.equals("Gallons to Liters")) {
+                result = baseValue * 3.785412;
+            }
 
-        result = result / convFactor;
+        }
 
         TextView tvResult = (TextView) findViewById(R.id.textView2);
         tvResult.setText(Double.toString(result));

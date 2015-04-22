@@ -1,10 +1,13 @@
 package myapps.oilfieldcalculator;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -132,6 +135,10 @@ public class MainActivity extends ActionBarActivity {
             share();
         }
 
+        if(id == R.id.clear) {
+            clear();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -160,6 +167,10 @@ public class MainActivity extends ActionBarActivity {
     public double calculateCTSHFactor(){
         //Verify AmbientTemp isnt a '.' or blank
         double AmbientTempNum = ((AmbientTemp.getText().toString().equals("") || AmbientTemp.getText().toString().equals("."))? 0 : Double.valueOf(AmbientTemp.getText().toString()));
+        if(AmbientTempNum == 0) {
+            ActualTemp.setText("0.0");
+            return 0.0;
+        }
 
         // (Average Temp x 7 + AmbientTemp) / 8 = Actual Temp
         double result = (Double.valueOf(AvgTempNum.getText().toString()) * 7 + AmbientTempNum) / 8;
@@ -179,17 +190,12 @@ public class MainActivity extends ActionBarActivity {
         String retStr = "";
         RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
-        /*
-        retStr = "Temperatures: " + upperTemp.getText().toString() + " " + middleTemp.getText().toString() + " " + lowerTemp.getText().toString() + "\n";
-        retStr = retStr + "Average Temperature: " + AvgTempNum.getText().toString() + "\n";
-        retStr = retStr + "Total Observed Volume: " + TotalObservedVolume.getText().toString();
-        retStr = retStr + ""
-        */
         for(int i = 0; i < relLayout.getChildCount(); i++) {
              View view = relLayout.getChildAt(i);
             if(view instanceof TextView) {
                 TextView tv = (TextView) view;
                 retStr = retStr + tv.getText().toString();
+
             }
 
 
@@ -200,11 +206,23 @@ public class MainActivity extends ActionBarActivity {
 
             retStr = retStr + " ";
 
+            // Assess if it's the last field in that line
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
+            int rules[] = params.getRules();
+
+            if ((rules[RelativeLayout.ALIGN_PARENT_END] != 0)||(view.getId() == R.id.TempLower)) {
+                retStr = retStr + "\n";
+            }
+
+            /* OLD WAY!!
             if ((view.getId() == R.id.TempLower)||(view.getId() == R.id.AvgTempNum)||(view.getId() == R.id.TotalObservedVolume)||(view.getId() == R.id.FreeWaterVolume)||
                 (view.getId() == R.id.AmbientTemperature)||(view.getId() == R.id.ctshFactor)||(view.getId() == R.id.ActualTemp)||(view.getId() == R.id.GaugeInCriticalZoneSpinner)||
                 (view.getId() == R.id.BblsPer)||(view.getId() == R.id.API)||(view.getId() == R.id.RoofCorrection)||(view.getId() == R.id.GrossObservedVolume)) {
                 retStr = retStr + "\n";
             }
+            */
+
+
         }
 
         return retStr;
@@ -215,6 +233,42 @@ public class MainActivity extends ActionBarActivity {
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, getScreenValues());
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_using)));
+    }
+
+    public void clear() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.clear_fields))
+                .setMessage(getString(R.string.clear_question))
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue With Delete
+                        RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+
+                        // Cycle through everything on screen and reset it
+                        for(int i = 0; i < relLayout.getChildCount(); i++) {
+                            View view = relLayout.getChildAt(i);
+                            if (view instanceof EditText) {
+                                ((EditText) view).setText("");
+                            }
+                            if (view instanceof Spinner) {
+                                ((Spinner) view).setSelection(0,true);
+                            }
+                        }
+
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do Nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
+
+
     }
 
 }

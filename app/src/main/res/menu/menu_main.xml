@@ -10,4 +10,6 @@
         android:orderInCategory="110" app:showAsAction="never" />
     <item android:id="@+id/fraction_converter" android:title="@string/fraction_converter"
         android:orderInCategory="110" app:showAsAction="never" />
+    <item android:id="@+id/clear" android:title="@string/clear"
+        android:orderInCategory="110" app:showAsAction="never" />
 </menu>

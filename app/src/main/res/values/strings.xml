@@ -7,10 +7,15 @@
     <string name="share_using">Share using...</string>
     <string name="action_converter">Converter</string>
     <string name="fraction_converter">Fraction Converter</string>
+    <string name="clear_fields">Clear Fields</string>
+    <string name="clear_question">Would you like to clear the values you entered?</string>
+    <string name="clear">Clear Values</string>
+
     <string name="title_activity_converter">Converter</string>
     <string-array name="magnitude_array">
         <item>Distance</item>
         <item>Volume</item>
+        <item>Quick Conv.</item>
     </string-array>
     <string-array name="distance_array">
         <item>m</item>
@@ -31,11 +36,26 @@
         <item>X</item>
         <item>÷</item>
     </string-array>
-
     <string-array name="Critical_Zone">
         <item>Yes</item>
         <item>No</item>
         <item>Below Roof</item>
+    </string-array>
+    <string-array name="quick_conv_array">
+        <item>Barrels to Gallons</item>
+        <item>Gallons to Barrels</item>
+        <item>Lbs to Metric Tons</item>
+        <item>Lbs to Long Tons</item>
+        <item>Lbs to Short Tons</item>
+        <item>Lbs to Kilos</item>
+        <item>m3 to  Barrels</item>
+        <item>m3 to  Gallons</item>
+        <item>Lbs/Gal to Liter Weight</item>
+        <item>Gallons to m3</item>
+        <item>Celsius to Fahrenheit</item>
+        <item>Bar to PSI</item>
+        <item>Lbs/Gal to Specific Gravity</item>
+        <item>Gallons to Liters</item>
     </string-array>
 
     <string name="title_activity_fraction_calculator">FractionCalculator</string>
