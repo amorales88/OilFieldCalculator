@@ -124,7 +124,6 @@
             android:enabled="true"
             android:layout_alignBottom="@+id/TotalObservedVolumeText"
             android:layout_toRightOf="@+id/TotalObservedVolumeText"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/AvgTempNum"
             android:gravity="center|bottom"
@@ -371,7 +370,6 @@
             android:layout_alignEnd="@+id/BblsPer"
             android:layout_below="@+id/StrappedAPI"
             android:textSize="16dp"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"/>
 
         <TextView
@@ -399,7 +397,6 @@
             android:layout_alignRight="@+id/GaugeInCriticalZoneSpinner"
             android:layout_alignEnd="@+id/GaugeInCriticalZoneSpinner"
             android:layout_below="@+id/API"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
         <TextView
@@ -424,7 +421,6 @@
             android:layout_alignBottom="@+id/GrossObservedVolumeText"
             android:layout_toRightOf="@+id/GrossObservedVolumeText"
             android:text="0.0"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/RoofCorrectionText" />
 
@@ -451,9 +447,7 @@
             android:layout_below="@+id/GrossObservedVolumeText"
             android:layout_toRightOf="@+id/GSVText"
             android:layout_alignBottom="@+id/GSVText"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="false" />
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -478,8 +472,8 @@
             android:layout_toRightOf="@+id/SWText"
             android:layout_alignBottom="@+id/SWText"
             android:layout_below="@+id/GSV"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:text="0.0" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -500,13 +494,331 @@
             android:gravity="center|bottom"
             android:editable="false"
             android:maxLength="15"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="false"
             android:layout_alignBottom="@+id/SWVolumeText"
             android:layout_below="@+id/SW"
             android:layout_toRightOf="@+id/SWVolumeText"
-            android:layout_alignParentStart="false" />
+            android:layout_alignParentStart="false"
+            android:text="0.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Net Standard Volume:"
+            android:id="@+id/NetStandardVolumeText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/SWVolumeText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/NetStandardVolume"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/SWVolume"
+            android:layout_toRightOf="@+id/NetStandardVolumeText"
+            android:layout_alignBottom="@+id/NetStandardVolumeText"
+            android:text="0.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Total Rec&apos;d / Del&apos;d:"
+            android:id="@+id/TotalRecDelText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/NetStandardVolumeText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/TotalRecDel"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:layout_alignBottom="@+id/TotalRecDelText"
+            android:layout_toRightOf="@+id/TotalRecDelText"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/NetStandardVolume"
+            android:text="0.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Trucks:"
+            android:id="@+id/TrucksText"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/TotalRecDelText" />
+
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/Trucks"
+            android:editable="false"
+            android:enabled="true"
+            android:gravity="center|bottom"
+            android:textAlignment="center"
+            android:paddingBottom="5dp"
+            android:maxLength="13"
+            android:nextFocusDown="@+id/StrappedAPI"
+            android:textSize="16dp"
+            android:layout_toRightOf="@+id/TrucksText"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/TotalRecDel"
+            android:layout_alignBottom="@+id/TrucksText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Floating Barrels:"
+            android:id="@+id/FloatingBarrelsText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/TrucksText" />
+
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/FloatingBarrels"
+            android:editable="false"
+            android:enabled="true"
+            android:gravity="center|bottom"
+            android:textAlignment="center"
+            android:paddingBottom="5dp"
+            android:maxLength="13"
+            android:nextFocusDown="@+id/StrappedAPI"
+            android:textSize="16dp"
+            android:layout_below="@+id/Trucks"
+            android:layout_toRightOf="@+id/FloatingBarrelsText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/FloatingBarrelsText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Lines @ 60°F:"
+            android:id="@+id/LinesText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/FloatingBarrelsText" />
+
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/Lines"
+            android:editable="false"
+            android:enabled="true"
+            android:gravity="center|bottom"
+            android:textAlignment="center"
+            android:paddingBottom="5dp"
+            android:maxLength="13"
+            android:nextFocusDown="@+id/StrappedAPI"
+            android:textSize="16dp"
+            android:layout_below="@+id/FloatingBarrels"
+            android:layout_toRightOf="@+id/LinesText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/LinesText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Barrels @ 60°F:"
+            android:id="@+id/BarrelsText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/Lines" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/Barrels"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:text="0.0"
+            android:layout_alignBottom="@+id/BarrelsText"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/BarrelsText"
+            android:layout_below="@+id/Lines" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Pounds:"
+            android:id="@+id/PoundsText"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/BarrelsText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/Pounds"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:text="0.0"
+            android:layout_below="@+id/Barrels"
+            android:layout_toRightOf="@+id/PoundsText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/PoundsText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Long Tons:"
+            android:id="@+id/LongTonsText"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/PoundsText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/LongTons"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:text="0.0"
+            android:layout_below="@+id/Pounds"
+            android:layout_toRightOf="@+id/LongTonsText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/LongTonsText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Metric Tons:"
+            android:id="@+id/MetricTonsText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/LongTonsText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/MetricTons"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:text="0.0"
+            android:layout_below="@+id/LongTons"
+            android:layout_toRightOf="@+id/MetricTonsText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/MetricTonsText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Short Tons:"
+            android:id="@+id/ShortTonsText"
+            android:layout_below="@+id/MetricTonsText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/ShortTons"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:text="0.0"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/MetricTons"
+            android:layout_toRightOf="@+id/ShortTonsText"
+            android:layout_alignBottom="@+id/ShortTonsText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Kilos:"
+            android:id="@+id/KilosText"
+            android:layout_below="@+id/ShortTonsText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/Kilos"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:text="0.0"
+            android:layout_below="@+id/ShortTons"
+            android:layout_toRightOf="@+id/KilosText"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/KilosText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Lbs./Gallon:"
+            android:id="@+id/LbsGallonText"
+            android:layout_below="@+id/KilosText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/LbsGallon"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:maxLength="15"
+            android:text="0.0"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/Kilos"
+            android:layout_toRightOf="@+id/LbsGallonText"
+            android:layout_alignBottom="@+id/LbsGallonText" />
 
     </RelativeLayout>
 </ScrollView>
