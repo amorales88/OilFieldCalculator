@@ -1,5 +1,6 @@
 package myapps.oilfieldcalculator;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class FractionCalculator extends ActionBarActivity {
+public class FractionCalculator extends Activity {
 
     EditText feetNum1,feetNum2;
     EditText inchNum1,inchNum2;

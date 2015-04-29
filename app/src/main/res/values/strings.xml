@@ -6,7 +6,7 @@
     <string name="action_share">Share</string>
     <string name="share_using">Share using...</string>
     <string name="action_converter">Converter</string>
-    <string name="fraction_converter">Fraction Converter</string>
+    <string name="fraction_converter">Fraction Calculator</string>
     <string name="clear_fields">Clear Fields</string>
     <string name="clear_question">Would you like to clear the values you entered?</string>
     <string name="clear">Clear Values</string>
