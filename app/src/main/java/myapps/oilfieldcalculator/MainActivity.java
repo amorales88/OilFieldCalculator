@@ -34,7 +34,9 @@ public class MainActivity extends ActionBarActivity {
     EditText AmbientTemp;
     TextView ctshFactor;
     TextView ActualTemp;
+    TextView VCF;
     Spinner operatorSpinner;
+    EditText API;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class MainActivity extends ActionBarActivity {
         AmbientTemp = (EditText) findViewById(R.id.AmbientTemperature);
         ctshFactor = (TextView) findViewById(R.id.ctshFactor);
         ActualTemp = (TextView) findViewById(R.id.ActualTemp);
+        VCF = (TextView) findViewById(R.id.VCF);
+        API = (EditText) findViewById(R.id.API);
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -98,6 +102,24 @@ public class MainActivity extends ActionBarActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Critical_Zone, android.R.layout.simple_spinner_dropdown_item);
         operatorSpinner.setAdapter(adapter);
 
+        TextWatcher APIWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calculateVCFandRoofCorrection();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+        API.addTextChangedListener(APIWatcher);
 
     }
 
@@ -268,6 +290,26 @@ public class MainActivity extends ActionBarActivity {
                 .show();
 
 
+
+    }
+
+    //This function calculates and sets the VCF and RoofCorrection TextView
+    public void calculateVCFandRoofCorrection(){
+        double api = (API.getText().toString().equals("") || API.getText().toString().equals("."))? 0 : Double.valueOf(API.getText().toString());
+        double Density = (141.5/(api + 131.5)) * 999.016;
+        double X = 0;
+
+        //Density will never be exactly 838.3127
+        if(Density > 838.3127)
+            X = 103.872;
+        else if(Density >= 787.5195 && Density < 838.3127)
+            X = 330.301;
+        else if(Density >= 770.352 && Density < 787.5195)
+            X = 1489.067;
+        else if(Density >= 610.6 && Density < 770.352)
+            X = 192.457;
+
+        VCF.setText(String.valueOf(X));
 
     }
 

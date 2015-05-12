@@ -391,7 +391,7 @@
             android:gravity="center|bottom"
             android:editable="false"
             android:text="0.0"
-            android:maxLength="12"
+            android:maxLength="20"
             android:layout_below="@+id/API"
             android:layout_toRightOf="@+id/VCFText"
             android:layout_alignParentEnd="true"
