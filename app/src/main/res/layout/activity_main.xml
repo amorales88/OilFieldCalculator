@@ -367,8 +367,6 @@
             android:nextFocusForward="@+id/AmbientTemperature"
             android:layout_alignBottom="@+id/APIat60Text"
             android:layout_toRightOf="@+id/APIat60Text"
-            android:layout_alignRight="@+id/BblsPer"
-            android:layout_alignEnd="@+id/BblsPer"
             android:layout_below="@+id/StrappedAPI"
             android:textSize="16dp"
             android:layout_alignParentEnd="true"/>
@@ -377,9 +375,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="VCF:"
+            android:id="@+id/VCFText"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/APIat60Text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/VCF"
+            android:gravity="center|bottom"
+            android:editable="false"
+            android:text="0.0"
+            android:maxLength="12"
+            android:layout_below="@+id/API"
+            android:layout_toRightOf="@+id/VCFText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/VCFText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Roof Correction: "
             android:id="@+id/RoofCorrectionText"
-            android:layout_below="@+id/APIat60Text"
+            android:layout_below="@+id/VCFText"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp" />
@@ -395,9 +419,7 @@
             android:maxLength="12"
             android:layout_alignBottom="@+id/RoofCorrectionText"
             android:layout_toRightOf="@+id/RoofCorrectionText"
-            android:layout_alignRight="@+id/GaugeInCriticalZoneSpinner"
-            android:layout_alignEnd="@+id/GaugeInCriticalZoneSpinner"
-            android:layout_below="@+id/API"
+            android:layout_below="@+id/VCF"
             android:layout_alignParentEnd="true" />
 
         <TextView
@@ -821,6 +843,7 @@
             android:layout_below="@+id/Kilos"
             android:layout_toRightOf="@+id/LbsGallonText"
             android:layout_alignBottom="@+id/LbsGallonText" />
+
 
     </RelativeLayout>
 </ScrollView>
