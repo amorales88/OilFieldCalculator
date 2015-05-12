@@ -287,8 +287,12 @@ public class MainActivity extends ActionBarActivity {
     //This function calculates and sets the VCF and RoofCorrection TextView
     public void calculateVCFandRoofCorrection(){
         double api = (API.getText().toString().equals("") || API.getText().toString().equals("."))? 0 : Double.valueOf(API.getText().toString());
+        double averageTemp = (AvgTempNum.getText().toString().equals("") || AvgTempNum.getText().toString().equals("."))? 0 : Double.valueOf(AvgTempNum.getText().toString());
         double Density = (141.5/(api + 131.5)) * 999.016;
         double X = 0;
+        double Y = 0;
+        double TempC = (averageTemp - 32)/1.8;
+        double TempK = TempC/630;
 
         //Density will never be exactly 838.3127
         if(Density > 838.3127)
@@ -300,7 +304,18 @@ public class MainActivity extends ActionBarActivity {
         else if(Density >= 610.6 && Density < 770.352)
             X = 192.457;
 
-        VCF.setText(String.valueOf(X));
+        if(Density > 838.3127)
+            Y = 0.2701;
+        else if(Density >= 787.5195 && Density < 838.3127)
+            Y = 0;
+        else if(Density >= 770.352 && Density < 787.5195)
+            Y = 0;
+        else if(Density >= 610.6 && Density < 770.352)
+            Y = 0.2438;
+
+
+
+        VCF.setText(String.valueOf(TempC));
 
     }
 
