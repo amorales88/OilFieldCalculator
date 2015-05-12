@@ -7,7 +7,9 @@ import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.Layout;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,6 +23,9 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -121,6 +126,8 @@ public class MainActivity extends ActionBarActivity {
 
         API.addTextChangedListener(APIWatcher);
 
+        API.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(10, 1)});
+
     }
 
 
@@ -220,7 +227,6 @@ public class MainActivity extends ActionBarActivity {
 
             }
 
-
             if(view instanceof Spinner) {
                 Spinner sp = (Spinner) view;
                 retStr = retStr + sp.getSelectedItem().toString();
@@ -230,23 +236,11 @@ public class MainActivity extends ActionBarActivity {
 
             // Assess if it's the last field in that line
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
-            int rules[] = params.getRules();
-
-            if ((rules[RelativeLayout.ALIGN_PARENT_END] != 0)||(view.getId() == R.id.TempLower)) {
+            int[] rules = params.getRules();
+            if ((rules[RelativeLayout.ALIGN_PARENT_RIGHT] == RelativeLayout.TRUE)||(view.getId() == R.id.TempLower)) {
                 retStr = retStr + "\n";
             }
-
-            /* OLD WAY!!
-            if ((view.getId() == R.id.TempLower)||(view.getId() == R.id.AvgTempNum)||(view.getId() == R.id.TotalObservedVolume)||(view.getId() == R.id.FreeWaterVolume)||
-                (view.getId() == R.id.AmbientTemperature)||(view.getId() == R.id.ctshFactor)||(view.getId() == R.id.ActualTemp)||(view.getId() == R.id.GaugeInCriticalZoneSpinner)||
-                (view.getId() == R.id.BblsPer)||(view.getId() == R.id.API)||(view.getId() == R.id.RoofCorrection)||(view.getId() == R.id.GrossObservedVolume)) {
-                retStr = retStr + "\n";
-            }
-            */
-
-
         }
-
         return retStr;
     }
 
@@ -288,9 +282,6 @@ public class MainActivity extends ActionBarActivity {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
-
-
-
     }
 
     //This function calculates and sets the VCF and RoofCorrection TextView
@@ -314,3 +305,4 @@ public class MainActivity extends ActionBarActivity {
     }
 
 }
+
