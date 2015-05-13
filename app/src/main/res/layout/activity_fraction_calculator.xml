@@ -52,41 +52,6 @@
         android:layout_alignTop="@+id/feetNum1"
         android:nextFocusDown="@+id/numeratorNum1"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="in."
-        android:id="@+id/inText"
-        android:layout_alignBottom="@+id/denomNum1"
-        android:layout_toRightOf="@+id/denomNum1"
-        android:layout_toEndOf="@+id/denomNum1" />
-
-    <View
-        android:layout_width="25dp"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:id="@+id/Divider"
-        android:layout_above="@+id/denomNum1"
-        android:layout_toRightOf="@+id/inchNum1"
-        android:layout_toEndOf="@+id/inchNum1"
-        android:layout_alignRight="@+id/denomNum1" />
-
-    <EditText
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/denomNum1"
-        android:gravity="center"
-        android:maxLength="2"
-        android:padding="0dp"
-        android:textSize="15dp"
-        android:enabled="true"
-        android:layout_alignBottom="@+id/inchNum1"
-        android:layout_toRightOf="@+id/inchNum1"
-        android:nextFocusDown="@+id/feetNum2"/>
-
     <EditText
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -106,6 +71,62 @@
 
     <EditText
         android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/denomNum1"
+        android:gravity="center"
+        android:maxLength="2"
+        android:padding="0dp"
+        android:textSize="15dp"
+        android:enabled="true"
+        android:layout_alignBottom="@+id/inchNum1"
+        android:layout_toRightOf="@+id/inchNum1"
+        android:nextFocusDown="@+id/feetNum2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="in."
+        android:id="@+id/inText"
+        android:layout_alignBottom="@+id/denomNum1"
+        android:layout_toRightOf="@+id/denomNum1"
+        android:layout_toEndOf="@+id/denomNum1" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:text="Clear"
+        android:id="@+id/ClearButton"
+        android:onClick="clearFields"
+        android:layout_alignTop="@+id/inText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#dba2a2a2" />
+
+    <Spinner
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/opSpinner"
+        android:spinnerMode="dropdown"
+        style="@style/spinner_style"
+        android:popupBackground="#ff313131"
+        android:layout_alignBottom="@+id/denomNum1"
+        android:layout_toEndOf="@+id/inText" />
+
+    <View
+        android:layout_width="25dp"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/Divider"
+        android:layout_above="@+id/denomNum1"
+        android:layout_toRightOf="@+id/inchNum1"
+        android:layout_toEndOf="@+id/inchNum1"
+        android:layout_alignRight="@+id/denomNum1" />
+
+    <EditText
+        android:layout_width="40dp"
         android:layout_height="50dp"
         android:inputType="number"
         android:ems="10"
@@ -114,10 +135,10 @@
         android:enabled="true"
         android:padding="5dp"
         android:maxLength="3"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/ftText"
-        android:layout_toStartOf="@+id/ftText"
-        android:nextFocusDown="@+id/inchNum2"/>
+        android:nextFocusDown="@+id/inchNum2"
+        android:layout_below="@+id/ClearButton"
+        android:layout_toLeftOf="@+id/textView3"
+        android:layout_toStartOf="@+id/textView3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -149,6 +170,23 @@
         android:layout_height="40dp"
         android:inputType="number"
         android:ems="10"
+        android:id="@+id/numeratorNum2"
+        android:padding="0dp"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:maxLength="2"
+        android:enabled="true"
+        android:layout_alignRight="@+id/denomNum2"
+        android:layout_alignEnd="@+id/Divider2"
+        android:layout_alignLeft="@+id/denomNum2"
+        android:layout_above="@+id/Divider2"
+        android:nextFocusDown="@+id/denomNum2"/>
+
+    <EditText
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:ems="10"
         android:id="@+id/denomNum2"
         android:gravity="center"
         android:maxLength="2"
@@ -171,22 +209,6 @@
         android:layout_alignRight="@+id/denomNum2"
         android:layout_alignTop="@+id/feetNum2" />
 
-    <EditText
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/numeratorNum2"
-        android:padding="0dp"
-        android:textSize="15dp"
-        android:gravity="center"
-        android:maxLength="2"
-        android:enabled="true"
-        android:layout_alignRight="@+id/denomNum2"
-        android:layout_alignEnd="@+id/Divider2"
-        android:layout_alignLeft="@+id/denomNum2"
-        android:layout_above="@+id/Divider2"
-        android:nextFocusDown="@+id/denomNum2"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -197,18 +219,6 @@
         android:layout_alignBottom="@+id/denomNum2"
         android:layout_alignLeft="@+id/inText"
         android:layout_alignStart="@+id/inText" />
-
-    <Spinner
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/opSpinner"
-        android:spinnerMode="dropdown"
-        android:layout_above="@+id/numeratorNum2"
-        android:layout_toRightOf="@+id/feetNum1"
-        android:layout_toStartOf="@+id/denomNum1"
-        android:layout_alignRight="@+id/Divider"
-        android:layout_alignEnd="@+id/Divider"
-        style="@style/spinner_style" />
 
     <Button
         android:layout_width="wrap_content"
@@ -231,20 +241,9 @@
         android:layout_height="50dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/result"
-        android:layout_marginBottom="51dp"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="75dp"
-        android:text="Clear"
-        android:id="@+id/ClearButton"
-        android:onClick="clearFields"
-        android:layout_alignTop="@+id/inText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="#dba2a2a2" />
+        android:layout_below="@+id/CalculateButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
