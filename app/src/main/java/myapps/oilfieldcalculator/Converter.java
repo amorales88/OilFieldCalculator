@@ -19,27 +19,20 @@ import android.widget.Toast;
 public class Converter extends Activity {
 
     Spinner spinner;
-    Spinner spinner2;
     EditText editText;
-    Spinner magSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
 
-        magSpinner = (Spinner) findViewById(R.id.magnitudeSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.magnitude_array, android.R.layout.simple_spinner_dropdown_item);
-        magSpinner.setAdapter(adapter);
-
-        // TODO: Change Spinners values depending on choice (volume/distance)
-        // Do I still need to set them here or does it get preset automagically?
-        // setValuesToSpinners(R.id.spinner, magSpinner.getSelectedItemId() );
-        //setValuesToSpinners(R.id.spinner2);
-
         spinner = (Spinner) findViewById(R.id.spinner);
-        spinner2 = (Spinner) findViewById(R.id.spinner2);
         editText = (EditText) findViewById(R.id.editText);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quick_conv_array, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -71,37 +64,8 @@ public class Converter extends Activity {
             }
         });
 
-        spinner2.setOnItemSelectedListener(spinner.getOnItemSelectedListener());
         editText.setSelection(0,1);
 
-        AdapterView.OnItemSelectedListener magListener = new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int arrayID = 0;
-                if (magSpinner.getSelectedItem().toString().equals("Distance")) {
-                    arrayID = R.array.distance_array;
-                }
-                else if(magSpinner.getSelectedItem().toString().equals("Volume")) {
-                    arrayID = R.array.volume_array;
-                }
-                else if(magSpinner.getSelectedItem().toString().equals("Quick Conv.")) {
-                    arrayID = R.array.quick_conv_array;
-                }
-
-                setValuesToSpinners(spinner.getId(),arrayID);
-                if(arrayID != R.array.quick_conv_array)
-                   setValuesToSpinners(spinner2.getId(),arrayID);
-
-                // Disable this if it's quick conv.
-                spinner2.setEnabled(arrayID != R.array.quick_conv_array);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        };
-        magSpinner.setOnItemSelectedListener(magListener);
     }
 
 
@@ -155,45 +119,9 @@ public class Converter extends Activity {
         double convFactor = 0;
         double result = 0;
         String convertFrom = spinner.getSelectedItem().toString();
-        String convertTo = spinner2.getSelectedItem().toString();
-        if(magSpinner.getSelectedItem().toString().equals("Distance")) {
-            switch (convertFrom) {
-                case "m":
-                    convFactor = 1;
-                    break;
-                case "ft":
-                    convFactor = 0.3048;
-                    break;
-                case "mi":
-                    convFactor = 1609.34;
-                    break;
-                case "km":
-                    convFactor = 1000;
-                    break;
-            }
 
-            result = baseValue * convFactor;
-            // Now all distances are in meter
-            switch (convertTo) {
-                case "m":
-                    convFactor = 1;
-                    break;
-                case "ft":
-                    convFactor = 0.3048;
-                    break;
-                case "mi":
-                    convFactor = 1609.34;
-                    break;
-                case "km":
-                    convFactor = 1000;
-                    break;
-            }
-            result = result / convFactor;
-        }
-        else if(magSpinner.getSelectedItem().toString().equals("Volume")) {
-            // TODO: Implement volume conversion
-        }
-        else if(magSpinner.getSelectedItem().toString().equals("Quick Conv.")) {
+
+
             switch (convertFrom) {
                 case "Barrels to Gallons":
                     result = baseValue * 42;
@@ -239,7 +167,7 @@ public class Converter extends Activity {
                     break;
             }
 
-        }
+
 
         TextView tvResult = (TextView) findViewById(R.id.textView2);
         tvResult.setText(Double.toString(result));
