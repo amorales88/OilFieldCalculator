@@ -37,6 +37,9 @@ public class MainActivity extends ActionBarActivity {
     EditText TotalObservedVolume;
     EditText FreeWaterVolume;
     EditText AmbientTemp;
+    EditText StrappedAPI;
+    EditText BblsPerDegree;
+    TextView RoofCorrection;
     TextView ctshFactor;
     TextView ActualTemp;
     TextView VCF;
@@ -62,6 +65,9 @@ public class MainActivity extends ActionBarActivity {
         ActualTemp = (TextView) findViewById(R.id.ActualTemp);
         VCF = (TextView) findViewById(R.id.VCF);
         API = (EditText) findViewById(R.id.API);
+        StrappedAPI = (EditText) findViewById(R.id.StrappedAPI);
+        BblsPerDegree = (EditText) findViewById(R.id.BblsPer);
+        RoofCorrection = (TextView) findViewById(R.id.RoofCorrection);
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -288,8 +294,10 @@ public class MainActivity extends ActionBarActivity {
     public void calculateVCFandRoofCorrection(){
         double api = (API.getText().toString().equals("") || API.getText().toString().equals("."))? 0 : Double.valueOf(API.getText().toString());
         double averageTemp = (AvgTempNum.getText().toString().equals("") || AvgTempNum.getText().toString().equals("."))? 0 : Double.valueOf(AvgTempNum.getText().toString());
+        double strappedAPI = (StrappedAPI.getText().toString().equals("") || StrappedAPI.getText().toString().equals("."))? 0 : Double.valueOf(StrappedAPI.getText().toString());
+        double bblsPerDegree = (BblsPerDegree.getText().toString().equals("") || BblsPerDegree.getText().toString().equals("."))? 0 : Double.valueOf(BblsPerDegree.getText().toString());
         double Density = (141.5/(api + 131.5)) * 999.016;
-        double X=0,Y=0,Z=0,W=0,V=0,A=0;
+        double X=0,Y=0,Z=0,W=0,V=0,A=0, B=0, Q=0, E=0, F=0, G=0, vcf=0, H=0, I=0, roofCorrection=0;
         double TempC = (averageTemp - 32)/1.8;
         double TempK = TempC/630;
 
@@ -320,7 +328,30 @@ public class MainActivity extends ActionBarActivity {
 
         A = Density * (1 + (((Math.exp(V * (1 + (0.8 * V)))) - 1) / (1 + (V * (1 + (1.6 * V)) * W))));
 
-        VCF.setText(String.valueOf(A));
+        B = Math.exp(-1.9947 + (0.00013427 * Z) + ((793920 + (2326 * Z)) / Math.pow(A,2)));
+
+        Q = Z - 60.0068749;
+
+        E = (((X/A) + Y) * (1 / A));
+
+        F = 1 / (1 - 0.00001 * B * 0); // Yeah, this always gets back to 1. We asked and Nathon said that's how it is, for now.
+
+        G = Math.exp((( - (E)) * Q) * (1 + (0.8 * E) * (Q + 0.01374979547)));
+
+        vcf = Double.valueOf(String.format("%.5f", G * F)); // Rounded to 5th decimal
+
+        H = G * Density;
+
+        I = Double.valueOf(String.format("%.1f", ((141.5 / (H / 999.016)) - 131.5)));
+
+        roofCorrection = Double.valueOf(String.format("%.2f", (((strappedAPI - I) * bblsPerDegree))));
+
+        Toast.makeText(this,"H: " + H, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"I: " + I, Toast.LENGTH_SHORT).show();
+
+        VCF.setText(String.valueOf(vcf));
+        RoofCorrection.setText(String.valueOf(roofCorrection));
+
 
     }
 
