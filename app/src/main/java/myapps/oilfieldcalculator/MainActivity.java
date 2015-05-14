@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -338,22 +339,24 @@ public class MainActivity extends ActionBarActivity {
 
         G = Math.exp((( - (E)) * Q) * (1 + (0.8 * E) * (Q + 0.01374979547)));
 
-        vcf = Double.valueOf(String.format("%.5f", G * F)); // Rounded to 5th decimal
+        vcf = roundTo(G * F, 5); // Rounded to 5th decimal
 
         H = G * Density;
 
-        I = Double.valueOf(String.format("%.1f", ((141.5 / (H / 999.016)) - 131.5)));
+        I  = roundTo(((141.5 / (H / 999.016)) - 131.5), 1);
 
-        roofCorrection = Double.valueOf(String.format("%.2f", (((strappedAPI - I) * bblsPerDegree))));
-
-        Toast.makeText(this,"H: " + H, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"I: " + I, Toast.LENGTH_SHORT).show();
+        roofCorrection = roundTo((((strappedAPI - I) * bblsPerDegree)), 2);
 
         VCF.setText(String.valueOf(vcf));
         RoofCorrection.setText(String.valueOf(roofCorrection));
 
 
     }
+
+    public static double roundTo(double num, int places){
+        return BigDecimal.valueOf(num).setScale(places,BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
 
 }
 
