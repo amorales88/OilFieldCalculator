@@ -289,8 +289,7 @@ public class MainActivity extends ActionBarActivity {
         double api = (API.getText().toString().equals("") || API.getText().toString().equals("."))? 0 : Double.valueOf(API.getText().toString());
         double averageTemp = (AvgTempNum.getText().toString().equals("") || AvgTempNum.getText().toString().equals("."))? 0 : Double.valueOf(AvgTempNum.getText().toString());
         double Density = (141.5/(api + 131.5)) * 999.016;
-        double X = 0;
-        double Y = 0;
+        double X=0,Y=0,Z=0,W=0,V=0,A=0;
         double TempC = (averageTemp - 32)/1.8;
         double TempK = TempC/630;
 
@@ -313,9 +312,15 @@ public class MainActivity extends ActionBarActivity {
         else if(Density >= 610.6 && Density < 770.352)
             Y = 0.2438;
 
+        Z = ((TempC - ((-0.148759 + (-0.267408 + (1.08076 + (1.269056 + (-4.089591 + (-1.871251 + (7.438081 + (-3.536296 * TempK) * TempK) * TempK) * TempK) * TempK) * TempK) * TempK) * TempK) * TempK)) * 1.8) + 32;
 
+        W = ((2 * X) + (Y * Density)) / (X + (( Y * Density)));
 
-        VCF.setText(String.valueOf(TempC));
+        V = 0.01374979547 / 2 * ((((X/Density) + Y) / Density));
+
+        A = Density * (1 + (((Math.exp(V * (1 + (0.8 * V)))) - 1) / (1 + (V * (1 + (1.6 * V)) * W))));
+
+        VCF.setText(String.valueOf(A));
 
     }
 
