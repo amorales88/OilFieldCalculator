@@ -99,7 +99,7 @@
             android:editable="false"
             android:text="0.0"
             android:maxLength="7"
-            android:nextFocusForward="@+id/TotalObservedVolumer"
+            android:nextFocusForward="@+id/TotalObservedVolume"
             android:layout_alignRight="@+id/FreeWaterVolume"
             android:layout_alignEnd="@+id/FreeWaterVolume"
             android:layout_alignParentEnd="true" />
@@ -440,7 +440,7 @@
             android:id="@+id/GrossObservedVolume"
             android:gravity="center|bottom"
             android:editable="false"
-            android:maxLength="15"
+            android:maxLength="13"
             android:layout_alignBottom="@+id/GrossObservedVolumeText"
             android:layout_toRightOf="@+id/GrossObservedVolumeText"
             android:text="0.0"
