@@ -47,6 +47,8 @@ public class MainActivity extends ActionBarActivity {
     Spinner operatorSpinner;
     EditText API;
     TextView GrossObservedVolume;
+    TextView GSV;
+    TextView NetStandardVolume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,8 @@ public class MainActivity extends ActionBarActivity {
         BblsPerDegree = (EditText) findViewById(R.id.BblsPer);
         RoofCorrection = (TextView) findViewById(R.id.RoofCorrection);
         GrossObservedVolume = (TextView) findViewById(R.id.GrossObservedVolume);
+        GSV = (TextView) findViewById(R.id.GSV);
+        NetStandardVolume = (TextView) findViewById(R.id.NetStandardVolume);
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -303,7 +307,7 @@ public class MainActivity extends ActionBarActivity {
         double FWV = (FreeWaterVolume.getText().toString().equals("") || FreeWaterVolume.getText().toString().equals("."))? 0 : Double.valueOf(FreeWaterVolume.getText().toString());
         double CTSH = (ctshFactor.getText().toString().equals("") || ctshFactor.getText().toString().equals("."))? 1 : Double.valueOf(ctshFactor.getText().toString());
         double Density = (141.5/(api + 131.5)) * 999.016;
-        double X=0,Y=0,Z=0,W=0,V=0,A=0, B=0, Q=0, E=0, F=0, G=0, vcf=0, H=0, I=0, roofCorrection=0;
+        double X=0,Y=0,Z=0,W=0,V=0,A=0, B=0, Q=0, E=0, F=0, G=0, vcf=0, H=0, I=0, roofCorrection=0,grossObservedVolume=0,gsv=0;
         double TempC = (averageTemp - 32)/1.8;
         double TempK = TempC/630;
 
@@ -355,7 +359,13 @@ public class MainActivity extends ActionBarActivity {
         VCF.setText(String.valueOf(vcf));
         RoofCorrection.setText(String.valueOf(roofCorrection));
 
-        GrossObservedVolume.setText(String.valueOf( roundTo( ((TOV - FWV) * CTSH),2)));
+        grossObservedVolume = roundTo( (((TOV - FWV) * CTSH) + roofCorrection),2);
+
+        GrossObservedVolume.setText(String.valueOf(grossObservedVolume ));
+
+        gsv = roundTo((grossObservedVolume * vcf),2);
+        GSV.setText(String.valueOf(gsv));
+        NetStandardVolume.setText(String.valueOf(gsv));
 
     }
 
