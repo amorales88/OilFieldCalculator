@@ -403,13 +403,16 @@ public class MainActivity extends ActionBarActivity {
         I  = roundTo(((141.5 / (H / 999.016)) - 131.5), 1);
 
         roofCorrection = roundTo((((strappedAPI - I) * bblsPerDegree)), 2);
+        //roofCorrection = (((strappedAPI - I) * bblsPerDegree));
 
         VCF.setText(String.valueOf(vcf));
         RoofCorrection.setText(String.valueOf(roofCorrection));
 
-        grossObservedVolume = roundTo( (((TOV - FWV) * CTSH) + roofCorrection),2);
+        //roundTo( (((TOV - FWV) * CTSH) + roofCorrection),2)
+        grossObservedVolume = (((TOV - FWV) * CTSH) + roofCorrection);
 
-        GrossObservedVolume.setText(String.valueOf(grossObservedVolume ));
+        GrossObservedVolume.setText(String.valueOf(roundTo( grossObservedVolume,2)));
+        //GrossObservedVolume.setText(String.valueOf(grossObservedVolume));
 
         gsv = roundTo((grossObservedVolume * vcf),2);
         GSV.setText(String.valueOf(gsv));
