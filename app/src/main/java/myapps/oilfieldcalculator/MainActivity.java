@@ -345,7 +345,7 @@ public class MainActivity extends ActionBarActivity {
                 .show();
     }
 
-    //This function calculates and sets the VCF and RoofCorrection TextView
+    //This function calculates and sets the VCF,RoofCorrection, Gross Observed Volume, GSV, and Net Standard Volume TextView
     public void calculateVCFandRoofCorrection(){
         double api = (API.getText().toString().equals("") || API.getText().toString().equals("."))? 0 : Double.valueOf(API.getText().toString());
         double averageTemp = (AvgTempNum.getText().toString().equals("") || AvgTempNum.getText().toString().equals("."))? 0 : Double.valueOf(AvgTempNum.getText().toString());
@@ -358,6 +358,15 @@ public class MainActivity extends ActionBarActivity {
         double X=0,Y=0,Z=0,W=0,V=0,A=0, B=0, Q=0, E=0, F=0, G=0, vcf=0, H=0, I=0, roofCorrection=0,grossObservedVolume=0,gsv=0;
         double TempC = (averageTemp - 32)/1.8;
         double TempK = TempC/630;
+
+        if(api == 0){
+            RoofCorrection.setText("0.0");
+            VCF.setText("0.0");
+            GrossObservedVolume.setText("0.0");
+            GSV.setText("0.0");
+            NetStandardVolume.setText("0.0");
+            return;
+        }
 
         //Density will never be exactly 838.3127
         if(Density > 838.3127)
@@ -402,12 +411,16 @@ public class MainActivity extends ActionBarActivity {
 
         I  = roundTo(((141.5 / (H / 999.016)) - 131.5), 1);
 
-        roofCorrection = roundTo((((strappedAPI - I) * bblsPerDegree)), 2);
-        //roofCorrection = (((strappedAPI - I) * bblsPerDegree));
+        if(GaugeAtCriticalZone.getSelectedItem().toString().equals("No")){
+            roofCorrection = roundTo((((strappedAPI - I) * bblsPerDegree)), 2);
+            //roofCorrection = (((strappedAPI - I) * bblsPerDegree));
+
+            RoofCorrection.setText(String.valueOf(roofCorrection));
+        }
+        else
+            RoofCorrection.setText("");
 
         VCF.setText(String.valueOf(vcf));
-        RoofCorrection.setText(String.valueOf(roofCorrection));
-
         //roundTo( (((TOV - FWV) * CTSH) + roofCorrection),2)
         grossObservedVolume = (((TOV - FWV) * CTSH) + roofCorrection);
 
