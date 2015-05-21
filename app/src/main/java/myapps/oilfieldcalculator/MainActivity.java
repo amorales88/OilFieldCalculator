@@ -17,38 +17,62 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.Inflater;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    EditText upperTemp;
-    EditText middleTemp;
-    EditText lowerTemp;
-    TextView AvgTempNum;
-    EditText TotalObservedVolume;
-    EditText FreeWaterVolume;
-    EditText AmbientTemp;
-    EditText StrappedAPI;
-    EditText BblsPerDegree;
-    TextView RoofCorrection;
-    TextView ctshFactor;
-    TextView ActualTemp;
-    TextView VCF;
-    Spinner operatorSpinner;
-    EditText API;
-    TextView GrossObservedVolume;
-    TextView GSV;
-    TextView NetStandardVolume;
+    static EditText upperTemp;
+    static EditText middleTemp;
+    static EditText lowerTemp;
+    static TextView AvgTempNum;
+    static EditText TotalObservedVolume;
+    static EditText FreeWaterVolume;
+    static EditText AmbientTemp;
+    static EditText StrappedAPI;
+    static EditText BblsPerDegree;
+    static TextView RoofCorrection;
+    static TextView ctshFactor;
+    static TextView ActualTemp;
+    static TextView VCF;
+    static Spinner operatorSpinner;
+    static Spinner GaugeAtCriticalZone;
+    static EditText API;
+    static TextView GrossObservedVolume;
+    static TextView GSV;
+    static TextView NetStandardVolume;
+    static TextView Barrels;
+    static TextView FloatingBarrels;
+    static Switch MeasurementType;
+    static TextView Kilos;
+    static TextView Lbs;
+    static TextView LbsPerGallon;
+    static EditText LinesAt60;
+    static TextView LongTons;
+    static TextView MetricTons;
+    static TextView SAndWPercent;
+    static TextView SAndWVolume;
+    static TextView ShortTons;
+    static TextView TotalRecdDeld;
+    static EditText Trucks;
+    static RelativeLayout relativeLayout;
+
+    Measurement open;
+    Measurement close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +99,24 @@ public class MainActivity extends ActionBarActivity {
         GrossObservedVolume = (TextView) findViewById(R.id.GrossObservedVolume);
         GSV = (TextView) findViewById(R.id.GSV);
         NetStandardVolume = (TextView) findViewById(R.id.NetStandardVolume);
+        Barrels = (TextView) findViewById(R.id.Barrels);
+        FloatingBarrels = (TextView) findViewById(R.id.FloatingBarrels);
+        MeasurementType = (Switch) findViewById(R.id.MeasurementType);
+        Kilos = (TextView) findViewById(R.id.Kilos);
+        Lbs = (TextView) findViewById(R.id.Pounds);
+        LbsPerGallon = (TextView) findViewById(R.id.LbsGallon);
+        LinesAt60 = (EditText) findViewById(R.id.Lines);
+        LongTons = (TextView) findViewById(R.id.LongTons);
+        MetricTons = (TextView) findViewById(R.id.MetricTons);
+        SAndWPercent = (TextView) findViewById(R.id.SW);
+        SAndWVolume = (TextView) findViewById(R.id.SWVolume);
+        ShortTons = (TextView) findViewById(R.id.ShortTons);
+        TotalRecdDeld = (TextView) findViewById(R.id.TotalRecDel);
+        Trucks = (EditText) findViewById(R.id.Trucks);
+        GaugeAtCriticalZone = (Spinner) findViewById(R.id.GaugeInCriticalZoneSpinner);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+        open = new Measurement();
+        close = new Measurement();
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -139,7 +181,26 @@ public class MainActivity extends ActionBarActivity {
 
         API.addTextChangedListener(APIWatcher);
 
-        API.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(10, 1)});
+        API.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(10, 1)});
+
+        MeasurementType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) { // Close
+                    saveMeasurements(open);
+                    clearAllFields();
+                    loadMeasurements(close);
+                }
+                else { // Open
+                    saveMeasurements(close);
+                    clearAllFields();
+                    loadMeasurements(open);
+                }
+            }
+        });
+
+        saveMeasurements(open);
+        saveMeasurements(close);
 
     }
 
@@ -230,10 +291,9 @@ public class MainActivity extends ActionBarActivity {
 
     public String getScreenValues() {
         String retStr = "";
-        RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
-        for(int i = 0; i < relLayout.getChildCount(); i++) {
-             View view = relLayout.getChildAt(i);
+        for(int i = 0; i < relativeLayout.getChildCount(); i++) {
+             View view = relativeLayout.getChildAt(i);
             if(view instanceof TextView) {
                 TextView tv = (TextView) view;
                 retStr = retStr + tv.getText().toString();
@@ -272,19 +332,7 @@ public class MainActivity extends ActionBarActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Continue With Delete
-                        RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
-
-                        // Cycle through everything on screen and reset it
-                        for(int i = 0; i < relLayout.getChildCount(); i++) {
-                            View view = relLayout.getChildAt(i);
-                            if (view instanceof EditText) {
-                                ((EditText) view).setText("");
-                            }
-                            if (view instanceof Spinner) {
-                                ((Spinner) view).setSelection(0,true);
-                            }
-                        }
-
+                        clearAllFields();
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -374,5 +422,57 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
+    public static void saveMeasurements(Measurement oMeasurement) {
+        // Save values
+        // Cycle through everything on screen and save it
+        for(int i = 0; i < relativeLayout.getChildCount(); i++) {
+            View view = relativeLayout.getChildAt(i);
+            if (view instanceof EditText) {
+                oMeasurement.setProperty(String.valueOf(view.getId()),((EditText) view).getText().toString());
+            }
+            if (view instanceof TextView) {
+                oMeasurement.setProperty(String.valueOf(view.getId()),((TextView) view).getText().toString());
+            }
+            if (view instanceof Spinner) {
+                oMeasurement.setProperty(String.valueOf(((Spinner) view).getId()), String.valueOf(((Spinner) view).getSelectedItemId()));
+            }
+        }
+
+    }
+
+    public static void loadMeasurements(Measurement oMeasurement) {
+
+        // Cycle through everything on screen and load it
+        for(int i = 0; i < relativeLayout.getChildCount(); i++) {
+            View view = relativeLayout.getChildAt(i);
+            if (view instanceof TextView) {
+                ((TextView) view).setText(oMeasurement.getProperty(String.valueOf(view.getId())));
+            }
+            if (view instanceof EditText) {
+                ((EditText) view).setText(oMeasurement.getProperty(String.valueOf(view.getId())));
+            }
+            if (view instanceof Spinner) {
+                try {
+                    ((Spinner) view).setSelection(Integer.parseInt(oMeasurement.getProperty(String.valueOf(view.getId()))), true);
+                } catch(Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void clearAllFields() {
+
+        // Cycle through everything on screen and reset it
+        for(int i = 0; i < relativeLayout.getChildCount(); i++) {
+            View view = relativeLayout.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText) view).setText("");
+            }
+            if (view instanceof Spinner) {
+                ((Spinner) view).setSelection(0,true);
+            }
+        }
+    }
 }
 

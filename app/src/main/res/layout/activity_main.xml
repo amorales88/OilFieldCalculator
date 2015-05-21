@@ -844,6 +844,18 @@
             android:layout_toRightOf="@+id/LbsGallonText"
             android:layout_alignBottom="@+id/LbsGallonText" />
 
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/MeasurementType"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/ShortTonsText"
+            android:layout_alignParentEnd="false"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/LbsGallon"
+            android:textOff="Open"
+            android:textOn="Close" />
+
 
     </RelativeLayout>
 </ScrollView>
