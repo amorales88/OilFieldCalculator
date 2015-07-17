@@ -15,10 +15,12 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -57,7 +59,8 @@ public class MainActivity extends ActionBarActivity {
     static TextView NetStandardVolume;
     static TextView Barrels;
     static TextView FloatingBarrels;
-    static Switch MeasurementType;
+    //static Switch MeasurementType;
+    static RadioGroup ButtonGroup;
     static TextView Kilos;
     static TextView Lbs;
     static TextView LbsPerGallon;
@@ -81,6 +84,14 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         ScrollView v = (ScrollView) findViewById(R.id.scrollProfile);
         v.requestFocus();
+        v.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v,MotionEvent event){
+                v.requestFocusFromTouch();
+                return false;
+            }
+        });
+
 
         upperTemp = (EditText) findViewById(R.id.TempUpper);
         middleTemp = (EditText) findViewById(R.id.TempMiddle);
@@ -101,7 +112,8 @@ public class MainActivity extends ActionBarActivity {
         NetStandardVolume = (TextView) findViewById(R.id.NetStandardVolume);
         Barrels = (TextView) findViewById(R.id.Barrels);
         FloatingBarrels = (TextView) findViewById(R.id.FloatingBarrels);
-        MeasurementType = (Switch) findViewById(R.id.MeasurementType);
+        //MeasurementType = (Switch) findViewById(R.id.MeasurementType);
+        ButtonGroup = (RadioGroup) findViewById(R.id.ButtonGroup);
         Kilos = (TextView) findViewById(R.id.Kilos);
         Lbs = (TextView) findViewById(R.id.Pounds);
         LbsPerGallon = (TextView) findViewById(R.id.LbsGallon);
@@ -183,18 +195,36 @@ public class MainActivity extends ActionBarActivity {
 
         API.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(10, 1)});
 
+        /*
         MeasurementType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) { // Close
+                if (isChecked) { // Close
                     saveMeasurements(open);
                     clearAllFields();
                     loadMeasurements(close);
-                }
-                else { // Open
+                } else { // Open
                     saveMeasurements(close);
                     clearAllFields();
                     loadMeasurements(open);
+                }
+            }
+        });
+        */
+
+        //Needs to do the same as the old switch
+        ButtonGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(ButtonGroup.getCheckedRadioButtonId() == R.id.Open){
+                    saveMeasurements(close);
+                    clearAllFields();
+                    loadMeasurements(open);
+                }
+                else{
+                    saveMeasurements(open);
+                    clearAllFields();
+                    loadMeasurements(close);
                 }
             }
         });
@@ -291,6 +321,11 @@ public class MainActivity extends ActionBarActivity {
 
     public String getScreenValues() {
         String retStr = "";
+
+        if(ButtonGroup.getCheckedRadioButtonId() == R.id.Open)
+            retStr += "Open: \n";
+        else
+            retStr += "Closed: \n";
 
         for(int i = 0; i < relativeLayout.getChildCount(); i++) {
              View view = relativeLayout.getChildAt(i);
