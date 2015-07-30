@@ -24,13 +24,12 @@
             android:layout_height="fill_parent"
             android:id="@+id/ButtonGroup"
             android:layout_marginBottom="5dp"
-            android:layout_alignRight="@+id/AvgTempNum"
-            android:layout_alignEnd="@+id/AvgTempNum"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_alignParentEnd="true">
 
             <RadioButton
                 android:layout_width="wrap_content"
